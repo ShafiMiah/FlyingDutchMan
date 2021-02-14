@@ -93,7 +93,7 @@
                         return translatedText;
                     }
                     break;
-                case "ro" :
+                case "ru" :
                     translatedText = underForeignFlag.Translation.roString[key];
                     if(translatedText){
                         return translatedText;
@@ -129,7 +129,44 @@
               language.find(".img-icon").attr("src",finalFlagUrl)
             }
         },
+        RedirectUrl: function(controllerName)
+        {
+            // RedirectUrl
+            let url = window.location.href; // current url
+            let splittedUrl = url.split("?");
+            let finalUrl = "";
+            let mainUrl = splittedUrl[0].split("/");
+            for(let i = 0; i < mainUrl.length-2; i++ ){
+                finalUrl += mainUrl[i] + "/";
+            }
+            switch(controllerName){
+                case "OrderCart":
+                    finalUrl += "OrderCart" + "/Index.html";
+                    break;
 
+                case "Presentation":
+                    finalUrl += "Presentation" + "/Index.html";
+                    break;
+
+                case "NodeView":
+                    finalUrl += "Presentation" + "/NodeView.html";
+                    break;
+
+                case "LogIn":
+                    finalUrl += "LogIn" + "/Index.html";
+                    break;
+
+                case "Help":
+                    finalUrl += "Help" + "/Index.html";
+                    break;
+            }
+
+            let language = underForeignFlag.Main.GetSelectedUi().trim();
+            finalUrl = finalUrl +"?"+"lang="+language;
+            window.location.href = finalUrl;
+
+            //let  = ;
+        }
 
     };
 
@@ -161,6 +198,19 @@
         //Get Available languages
       underForeignFlag.Main.LoadStartUrl();
     });
+
+
+    // Goto OrderCart func
+    $(document).on("click", ".order-cart-container", function (e) {
+        // onclick event for actions
+        // class click -> calls the function
+        // redirect to OrderView
+        underForeignFlag.Main.RedirectUrl("OrderCart");
+
+
+    });
+
+    // Go to order end
     $(function () {
         underForeignFlag.Main.LoadOrderQuantity();
         underForeignFlag.Main.SiteTranslation();
