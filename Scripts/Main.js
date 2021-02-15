@@ -211,6 +211,22 @@
     });
 
     // Go to order end
+    // The Search func
+    $(document).on("click", ".toolbar-search-icon", function (e) {
+       let searchText=$('input[type="search"]').val()
+        if (searchText.length>0){
+            window.localStorage.setItem("ItemQueryValue",searchText)
+            window.localStorage.setItem("ItemQuery","Search")
+            underForeignFlag.Main.RedirectUrl("NodeView")
+
+        }
+
+
+    });
+    // End of Search func
+
+
+
     $(function () {
         underForeignFlag.Main.LoadOrderQuantity();
         underForeignFlag.Main.SiteTranslation();
