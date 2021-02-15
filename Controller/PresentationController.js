@@ -16,7 +16,7 @@
            bodyContent.append(html);
        } ,
         ShowBeverageItems:function(allbeverages){
-            let name = underForeignFlag.Main.GetTranslationText("Name");
+            //let name = underForeignFlag.Main.GetTranslationText("Name");
             let articletype = underForeignFlag.Main.GetTranslationText("ArticleType");
             let priceinclvat = underForeignFlag.Main.GetTranslationText("PriceInclVat");
             let volumeml = underForeignFlag.Main.GetTranslationText("VolumeMl");
@@ -169,6 +169,27 @@
                     html+= "</div>"
 
                 }
+                if(item.finaldelivery.trim()){
+                    html+= "<div class='sp'>"
+                    html+="<label>"+ finaldelivery+"</label>"
+                    html+="<span>"+ item.finaldelivery +"</span>"
+                    html+= "</div>"
+
+                }
+                if(item.producer){
+                    html+= "<div class='sp'>"
+                    html+="<label>"+ producer+"</label>"
+                    html+="<span>"+ item.producer +"</span>"
+                    html+= "</div>"
+
+                }
+                if(item.testedproductionyear){
+                    html+= "<div class='sp'>"
+                    html+="<label>"+ testedproductionyear+"</label>"
+                    html+="<span>"+ item.testedproductionyear +"</span>"
+                    html+= "</div>"
+
+                }
                 //end spItem
                 html+= "</div>"
 //end specification
@@ -226,7 +247,7 @@
         underForeignFlag.PresentationController.ShowBeverageItems(allbeverages);
     }
     };
-    $(document).on("click", ".beverage-category", function (e) {
+    $(document).on("click", ".beverage-category", function () {
         //Get Available languages
         window.localStorage.removeItem("SelectedCategory");
         let selectedCategory = $(this).text();
@@ -244,6 +265,9 @@
             window.location.href = finalUrl;
         }
 
+    });
+    $( window ).resize(function() {
+        underForeignFlag.Main.SetMainBodyHeight();
     });
     $(function () {
         let presentationView = $(document).find(".presentation-view");
