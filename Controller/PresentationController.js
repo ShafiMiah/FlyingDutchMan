@@ -242,7 +242,7 @@
         },
     ShowBeverageCategoryItems : function (){
 
-       let selectedCategory = window.localStorage.getItem("SelectedCategory");
+       let selectedCategory = window.localStorage.getItem("ItemQueryValue");
        //now remove the storage
        // window.localStorage.removeItem("SelectedCategory");
        //Rename the presentation name
@@ -285,10 +285,10 @@
     };
     $(document).on("click", ".beverage-category", function () {
         //Get Available languages
-        window.localStorage.removeItem("SelectedCategory");
+        window.localStorage.removeItem("ItemQueryValue");
         let selectedCategory = $(this).text();
         if(selectedCategory){
-            window.localStorage.setItem("SelectedCategory",selectedCategory)
+            window.localStorage.setItem("ItemQueryValue",selectedCategory)
             window.localStorage.setItem("ItemQuery","Category")
             let url = window.location.href;
             let splittedUrl = url.split("?")
