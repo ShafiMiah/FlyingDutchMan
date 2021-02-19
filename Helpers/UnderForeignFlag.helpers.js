@@ -97,7 +97,35 @@
             container.remove();
         }
     };
-    underForeignFlag.NumberFormatter={
+    underForeignFlag.Formatter={
+       percentToNumber:function(percentStr) {
+        return Number(percentStr.slice(0,-1));
+        },
+        GetTranslatedPercent : function(percentStr){
+            let number = this.percentToNumber(percentStr);
+            let formattedNumber = this.GetFormattedNumberToFloat(number);
+            return formattedNumber+"%"
+        },
+        GetFormattedCurrency:function(amount){
+            let selectedLanguage = underForeignFlag.Main.GetSelectedUi();
+            var price = jQuery.localFormat(amount, "C",selectedLanguage);
+            return price;
+        },
+        GetFormattedNumberToInt: function(number){
+            let selectedLanguage = underForeignFlag.Main.GetSelectedUi();
+            var number = jQuery.localFormat(number, "n0",selectedLanguage);
+            return number;
+        },
+        GetFormattedNumberToFloat: function(number){
+            let selectedLanguage = underForeignFlag.Main.GetSelectedUi();
+            var number = jQuery.localFormat(number, "n2",selectedLanguage);
+            return number;
+        },
+        GetFormattedDate :function(date){
+            let selectedLanguage = underForeignFlag.Main.GetSelectedUi();
 
+            var date = jQuery.localFormat(date, "D",selectedLanguage);
+            return date;
+        }
     };
 }(window.flyingDutchman = window.flyingDutchman || {}, window.underForeignFlag = window.underForeignFlag || {}, window.jQuery, document));

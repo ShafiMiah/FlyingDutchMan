@@ -77,7 +77,7 @@ $.extend({
         }
         return typeof value === "undefined" ? null : value;
     },
-    format: function(value, format, culture) {
+    localFormat: function(value, format, culture) {
         culture = $.findClosestCulture( culture );
         if ( typeof value === "number" ) {
             value = formatNumber( value, format, culture );

@@ -55,18 +55,20 @@
                 html+= "<div class='specifications'>"
                 //sp item
                 if(item.alcoholstrength){
+                    let itemValue =underForeignFlag.Formatter.GetTranslatedPercent(item.alcoholstrength);
                     html+= "<div class='sp'>"
                     html+="<label>"+ alcoholstrength+"</label>"
-                    html+="<span>"+ item.alcoholstrength +"</span>"
+                    html+="<span>"+ itemValue +"</span>"
                     html+= "</div>"
 
                 }
                 //end spItem
                 //sp item
                 if(item.articletype){
+                    let itemValue =underForeignFlag.Formatter.GetFormattedNumberToInt(parseInt(item.articletype));
                     html+= "<div class='sp'>"
                     html+="<label>"+ articletype+"</label>"
-                    html+="<span>"+ item.articletype +"</span>"
+                    html+="<span>"+ itemValue +"</span>"
                     html+= "</div>"
 
                 }
@@ -145,9 +147,10 @@
                 //end spItem
                 //sp item
                 if(item.introduced){
+                    let date =underForeignFlag.Formatter.GetFormattedDate(new Date(item.introduced));
                     html+= "<div class='sp'>"
                     html+="<label>"+ introduced+"</label>"
-                    html+="<span>"+ item.introduced +"</span>"
+                    html+="<span>"+ date +"</span>"
                     html+= "</div>"
 
                 }
@@ -196,9 +199,10 @@
                 //Print the price information
                 html+="<div class='price-information'>"
                 if(item.priceinclvat){
+                    let price =underForeignFlag.Formatter.GetFormattedCurrency(parseFloat(item.priceinclvat));
                     html+= "<div class='price-incl-vat'>"
                     html+="<label>"+ priceinclvat+"</label>"
-                    html+="<span>"+ item.priceinclvat +"</span>"
+                    html+="<span>"+ price +"</span>"
                     html+= "</div>"
 
                 }
@@ -210,9 +214,10 @@
 
                 }
                 if(item.priceperlitre){
+                    let price =underForeignFlag.Formatter.GetFormattedCurrency(item.priceperlitre);
                     html+= "<div class='price-per-litre'>"
                     html+="<label>"+ priceperlitre+"</label>"
-                    html+="<span>"+ item.priceperlitre +"</span>"
+                    html+="<span>"+ price+"</span>"
                     html+= "</div>"
 
                 }
@@ -245,6 +250,36 @@
         presentationname.text(selectedCategory);
         let allbeverages= underForeignFlag.PresentationModel.GetBeverageCategoryItems(selectedCategory);
         underForeignFlag.PresentationController.ShowBeverageItems(allbeverages);
+    },
+        AddToOrderCart : function (item_nr,quantity){
+            let orderedItem = [];
+            let previousOrderedItem = window.localStorage.getItem("OrderItems");
+            let found =false;
+            if(previousOrderedItem){
+                let convertedOrder = JSON.parse(previousOrderedItem);
+                for(let i= 0 ; i< convertedOrder.length ; i++){
+                    let item = JSON.parse(convertedOrder[i]);
+                    if(item.item_nr == item_nr){
+                        found = true;
+                        item.quantity = quantity;
+                        let convertedItem = JSON.stringify(item);
+                        orderedItem.push(convertedItem);
+                    }
+                    else{
+                        let convertedItem = JSON.stringify(item);
+                        orderedItem.push(convertedItem);
+                    }
+                }
+            }
+           if(found == false){
+              let item = {
+                  "item_nr" :item_nr,
+                  "quantity": quantity
+              }
+               let convertedItem = JSON.stringify(item);
+               orderedItem.push(convertedItem);
+           }
+            window.localStorage.setItem("OrderItems",JSON.stringify(orderedItem));
     }
     };
     $(document).on("click", ".beverage-category", function () {
@@ -265,6 +300,14 @@
             window.location.href = finalUrl;
         }
 
+    });
+    /*Add to order*/
+    $(document).on("click", ".add-to-order-button", function () {
+        let orderContainer = $(this).closest(".add-to-order");
+        let nodeView =  $(this).closest(".node-view");
+        let item_nr = nodeView.data("item-nr");
+        let quantity = orderContainer.find(".add-qty").val();
+        underForeignFlag.PresentationController.AddToOrderCart(item_nr,quantity);
     });
     $( window ).resize(function() {
         underForeignFlag.Main.SetMainBodyHeight();

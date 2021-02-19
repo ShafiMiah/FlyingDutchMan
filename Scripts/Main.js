@@ -166,7 +166,8 @@
             window.location.href = finalUrl;
 
             //let  = ;
-        }
+        },
+
 
     };
 
