@@ -226,7 +226,7 @@
                 /*write order information*/
                 html+="<div class='add-to-order'>"
                 html+="<div class='under-foreign-flag-quantity'>"
-                html+= "<input class='add-qty'  max='1000' min='0' type='text' value='1'>"
+                html+= "<input class='add-qty'  max='1000' min='1' type='text' value='1'>"
                 html+="<span class='increase'></span>"
                 html+="<span class='decrease'></span>"
                 html+="</div>"
@@ -317,6 +317,10 @@
         let presentationView = $(document).find(".presentation-view");
         if(presentationView.length > 0){
             //Load category
+            let categoryMenu = $(document).find(".category-menu");
+            if(!categoryMenu.hasClass("selected")){
+                categoryMenu.addClass("selected")
+            }
             underForeignFlag.PresentationController.ShowAllCategory();
         }
         let presentationNodeView =  $(document).find(".presentation-node-view");
@@ -324,12 +328,24 @@
             let getItemsByQuery = window.localStorage.getItem("ItemQuery");
             switch(getItemsByQuery){
                 case "Category":
+                    let categoryMenu = $(document).find(".category-menu");
+                    if(!categoryMenu.hasClass("selected")){
+                        categoryMenu.addClass("selected")
+                    }
                     underForeignFlag.PresentationController.ShowBeverageCategoryItems();
                      break;
                 case "HardDrinks":
+                    let hardDrinks = $(document).find(".hard-drinks-menu");
+                    if(!hardDrinks.hasClass("selected")){
+                        hardDrinks.addClass("selected")
+                    }
                     underForeignFlag.PresentationController.ShowBeverageCategoryItems();
                     break;
                 case "SoftDrinks":
+                    let softDrinks = $(document).find(".soft-drink-menu");
+                    if(!softDrinks.hasClass("selected")){
+                        softDrinks.addClass("selected")
+                    }
                     underForeignFlag.PresentationController.ShowBeverageCategoryItems();
                     break;
                 case "Search":

@@ -54,7 +54,7 @@
                 window.location.href = finalUrl;
             }
         },
-        LoadStartUrl : function(){
+       /* LoadStartUrl : function(){
             let url = window.location.href.trim();
             let language = underForeignFlag.Main.GetSelectedUi().trim();
             let urlSplit = url.split('?')
@@ -68,7 +68,7 @@
             if(url!= finalUrl){
                 window.location.href = finalUrl;
             }
-        },
+        },*/
         GetSelectedUi: function(){
             let selectedLanguage = window.localStorage.getItem("SelectedLanguage");
             if(selectedLanguage){
@@ -208,11 +208,44 @@
 
     });
     $(document).on("click", ".start-url", function (e) {
-        //Get Available languages
-      underForeignFlag.Main.LoadStartUrl();
+        //Redirect start view
+      underForeignFlag.Main.RedirectUrl("Presentation");
     });
-
-
+    $(document).on("click", ".category-menu", function (e) {
+        //Redirect category view
+        underForeignFlag.Main.RedirectUrl("Presentation");
+    });
+    $(document).on("click", ".soft-drink-menu", function (e) {
+        //Redirect node view
+        window.localStorage.removeItem("ItemQueryValue")
+        window.localStorage.setItem("ItemQuery","SoftDrinks")
+        underForeignFlag.Main.RedirectUrl("NodeView");
+    });
+    $(document).on("click", ".hard-drinks-menu", function (e) {
+        //Get Available hard drinks
+        window.localStorage.removeItem("ItemQueryValue")
+        window.localStorage.setItem("ItemQuery","HardDrinks")
+        underForeignFlag.Main.RedirectUrl("NodeView");
+    });
+    /*Input increment*/
+    $(document).on("click", ".increase", function (e) {
+        //Get quantity value
+       let quantityElement = $(this).closest(".under-foreign-flag-quantity").find(".add-qty");
+       let quantity = parseInt(quantityElement.val())+1;
+        if(quantity > parseInt($(quantityElement).attr("max")) ){
+            quantity= $(quantityElement).attr("max");
+        }
+        quantityElement.val(quantity)
+    });
+    $(document).on("click", ".decrease", function (e) {
+        //Get quantity value
+        let quantityElement = $(this).closest(".under-foreign-flag-quantity").find(".add-qty");
+        let quantity = parseInt(quantityElement.val())-1;
+        if(quantity < parseInt($(quantityElement).attr("min"))){
+            quantity= $(quantityElement).attr("min");
+        }
+        quantityElement.val(quantity)
+    });
     // Goto OrderCart func
     $(document).on("click", ".order-cart-container", function (e) {
         // onclick event for actions
@@ -233,8 +266,6 @@
             underForeignFlag.Main.RedirectUrl("NodeView")
 
         }
-//This is to show test pupose
-
     });
     // End of Search func
 

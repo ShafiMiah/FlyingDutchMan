@@ -204,6 +204,14 @@ li.language-container:after{
 .main-toolbar .items-toolbar .foreign-flag-toolbar .container{
     padding: 0 0 0 10px;
 }
+.main-toolbar .items-toolbar .foreign-flag-toolbar .container.center-aligned{
+    padding: 0 10px 0 10px;
+}
+.main-toolbar .items-toolbar .foreign-flag-toolbar .container.selected{
+    border-color: #0099cc;
+    border-width: 0px 0px 3px;
+    border-style: solid;
+}
 .header-toolbar .icon{
     font-size: 25px;
 }

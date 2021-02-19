@@ -42,6 +42,12 @@
     .presentation-name {
         font-size: 30px;
     }
+    .main-toolbar .items-toolbar .foreign-flag-toolbar .container.center-aligned{
+        padding: 0px;
+    }
+    .items-toolbar.menu-toolbar li label{
+        font-size: 16px;
+    }
 }
 /*mobile horizontal media*/
 @media all and (max-height: 411px){
