@@ -107,39 +107,39 @@
             "Categories" : "বিভাগসমূহ",
         },
         //Dictionary variable for Romania language
-        roString : {
-            'Menu' : "Meniul",
-            'Order' : "Ordin",
-            'Search' : "căuta în",
-            "BeverageCategory":"Categorie băuturi",
-            "StartPage" : "Pagină de start",
+        ruString : {
+            'Menu' : "Menu",
+            'Order': "Order",
+            'Search' : "Search",
+            "BeverageCategory":"Beverage category",
+            "StartPage" : "Start page",
             //Drinks specification
-            "Name": "Nume",
-            "ArticleType": "Tipul articolului",
-            "PriceInclVat": "Prețul include taxa",
-            "VolumeMl": "Volum ml",
-            "PricePerLitre": "Prețul pe litru",
-            "Introduced": "Introdus",
-            "FinalDelivery": "livrare finală",
-            "Packaging": "Ambalare",
-            "CapType": "Tip capac",
-            "CountryOfOrigin": "Tara de origine",
-            "CountryOfOriginLandName": "Tara de origine",
-            "Producer": "Producător",
-            "Provider": "Furnizor",
-            "ProductionYear": "Anul de producție",
-            "TestedProductionYear": "An de producție testat",
-            "AlcoholStrength": "Tăria alcoolului",
-            "Module": "Modul",
-            "Assortment": "Sortiment",
+            "Name": "Name",
+            "ArticleType": "Article type",
+            "PriceInclVat": "Price incl. vat",
+            "VolumeMl": "Volume ml",
+            "PricePerLitre": "Price per litre",
+            "Introduced": "Introduced",
+            "FinalDelivery": "Final delivery",
+            "Packaging": "Packaging",
+            "CapType": "Cap type",
+            "CountryOfOrigin": "Country of origin",
+            "CountryOfOriginLandName": "Country of origin",
+            "Producer": "Producer",
+            "Provider": "Provider",
+            "ProductionYear": "Production year",
+            "TestedProductionYear": "Tested production year",
+            "AlcoholStrength": "Alcohol strength",
+            "Module": "Module",
+            "Assortment": "Assortment",
             "Organic": "Organic",
-            "Kosher": "Cuşer",
-            "AddToOrder":"Adăuga",
-            "Add":"Adăuga",
+            "Kosher": "Kosher",
+            "AddToOrder":"Add to order",
+            "Add":"Add",
             //Drinks Type
-            "HardDrinks" : "Băuturi tari",
-            "SoftDrinks" : "Bauturi nealcoolice",
-            "Categories" : "Categorii",
+            "HardDrinks" : "Hard drinks",
+            "SoftDrinks" : "Soft drinks",
+            "Categories" : "Categories",
         },
         //Dictionary variable for Urdu language
         urString : {
@@ -178,6 +178,6 @@
         }
     };
     underForeignFlag.Cultures={
-        availableCulture:["en-GB","sv","bn","ro","ur"]
+        availableCulture:["en-GB","sv","bn","ru","ur"]
     };
 }(window.flyingDutchman = window.flyingDutchman || {}, window.underForeignFlag = window.underForeignFlag || {}, window.jQuery, document));

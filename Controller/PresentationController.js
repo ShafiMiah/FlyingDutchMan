@@ -280,6 +280,7 @@
                orderedItem.push(convertedItem);
            }
             window.localStorage.setItem("OrderItems",JSON.stringify(orderedItem));
+            underForeignFlag.Main.LoadOrderQuantity();
     }
     };
     $(document).on("click", ".beverage-category", function () {

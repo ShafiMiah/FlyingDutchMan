@@ -2,7 +2,7 @@
     underForeignFlag.PopUp={
         defaults: {
             modal: false,
-            autoClose: true,
+            autoClose: false,
             closeOnClick: false,
             fixed: true,
             overlay: true

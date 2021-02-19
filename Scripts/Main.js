@@ -13,7 +13,19 @@
         },
         LoadOrderQuantity: function () {
             //Get the quantity from the local storage
-            let quantity = "7"
+            let orderedItem = window.localStorage.getItem("OrderItems");
+            let quantity = ""
+            if(orderedItem){
+                let totalItems = 0;
+                let convertedOrder = JSON.parse(orderedItem);
+                for(let i=0 ; i<convertedOrder.length;i++){
+                    let item = JSON.parse(convertedOrder[i]);
+                    totalItems+= parseInt(item.quantity);
+                }
+                if(totalItems > 0){
+                    quantity = totalItems
+                }
+            }
             let quantityElement = $(document).find(".order-cart-container");
             if(quantityElement.length> 0){
                 quantityElement.find(".total-qty").text(quantity)
@@ -94,7 +106,7 @@
                     }
                     break;
                 case "ru" :
-                    translatedText = underForeignFlag.Translation.roString[key];
+                    translatedText = underForeignFlag.Translation.ruString[key];
                     if(translatedText){
                         return translatedText;
                     }
