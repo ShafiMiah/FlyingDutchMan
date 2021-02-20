@@ -15,7 +15,18 @@
           bodyContent.empty();
            bodyContent.append(html);
        } ,
+        NodeViewLoading : function(){
+            /*SHow the loading icon*/
+            let bodyContent = $(document).find(".presentation-body");
+            let loadingHtml = "<div class='view-container-overlay-loading'></div>"
+            bodyContent.empty();
+            bodyContent.append(loadingHtml);
+            underForeignFlag.Main.SetMainBodyHeight();
+
+            /*End loading*/
+        },
         ShowBeverageItems:function(allbeverages){
+
             //let name = underForeignFlag.Main.GetTranslationText("Name");
             let articletype = underForeignFlag.Main.GetTranslationText("ArticleType");
             let priceinclvat = underForeignFlag.Main.GetTranslationText("PriceInclVat");
@@ -38,8 +49,7 @@
             let kosher = underForeignFlag.Main.GetTranslationText("Kosher");
             let addToOrder = underForeignFlag.Main.GetTranslationText("AddToOrder");
             let add = underForeignFlag.Main.GetTranslationText("Add");
-            underForeignFlag.Main.SetMainBodyHeight();
-
+            let bodyContent = $(document).find(".presentation-body");
             let html = "<div class='node-container'>";
             for(let i= 0; i < allbeverages.length ; i++){
                 let item = jQuery.parseJSON( allbeverages[i]);
@@ -236,7 +246,6 @@
                 html+="</div>"
             }
             html+="</div>"
-            let bodyContent = $(document).find(".presentation-body");
             bodyContent.empty();
             bodyContent.append(html);
         },
@@ -246,9 +255,15 @@
        //now remove the storage
        // window.localStorage.removeItem("SelectedCategory");
        //Rename the presentation name
+        this.NodeViewLoading();
         let presentationname = $(document).find(".presentation-name")
         presentationname.text(selectedCategory);
         let allbeverages= underForeignFlag.PresentationModel.GetBeverageCategoryItems(selectedCategory);
+        underForeignFlag.PresentationController.ShowBeverageItems(allbeverages);
+    },
+    ShowBeverageStrengthItems : function (strength){
+        this.NodeViewLoading();
+        let allbeverages= underForeignFlag.PresentationModel.GetBeverageStrengthItems(strength);
         underForeignFlag.PresentationController.ShowBeverageItems(allbeverages);
     },
         AddToOrderCart : function (item_nr,quantity){
@@ -339,14 +354,14 @@
                     if(!hardDrinks.hasClass("selected")){
                         hardDrinks.addClass("selected")
                     }
-                    underForeignFlag.PresentationController.ShowBeverageCategoryItems();
+                    underForeignFlag.PresentationController.ShowBeverageStrengthItems("HardDrinks");
                     break;
                 case "SoftDrinks":
                     let softDrinks = $(document).find(".soft-drink-menu");
                     if(!softDrinks.hasClass("selected")){
                         softDrinks.addClass("selected")
                     }
-                    underForeignFlag.PresentationController.ShowBeverageCategoryItems();
+                    underForeignFlag.PresentationController.ShowBeverageStrengthItems("SoftDrinks");
                     break;
                 case "Search":
                     underForeignFlag.PresentationController.ShowBeverageCategoryItems();

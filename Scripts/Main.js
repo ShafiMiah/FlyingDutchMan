@@ -7,8 +7,10 @@
             let mainBodyHeight = $( window ).height()-totalHeight;
             let mainBody = $(document).find(".main-body");
             mainBody.css("max-height",mainBodyHeight);
+
             mainBody.css("overflow-x","hidden");
             mainBody.css("overflow-y","auto");
+
 
         },
         LoadOrderQuantity: function () {

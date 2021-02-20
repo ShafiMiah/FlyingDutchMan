@@ -25,6 +25,34 @@
             }
             return allItems;
         },
+        GetBeverageStrengthItems:function (strength){
+            let allItems = [];
+            let spirits = underForeignFlag.FlyingDutchManPresentationDB.spirits;
+            for (let i = 0; i < spirits.length; i++) {
+               let percentStrength =  underForeignFlag.Formatter.percentToNumber(spirits[i].alcoholstrength);
+                switch(strength){
+                    case "SoftDrinks":
+                    {
+                        if(percentStrength <= 10){
+                            let item = spirits[i];
+                            allItems.push(JSON.stringify(item));
+                        }
+                        break;
+                    }
+                    case "HardDrinks":
+                        {
+                        if(percentStrength > 10){
+                            let item = spirits[i];
+                            allItems.push(JSON.stringify(item));
+                        }
+                        break;
+                    }
+                }
+
+
+            }
+            return allItems;
+        },
 
         AddToSet : function(set, item){
             if (!set.includes(item.trim())) {
