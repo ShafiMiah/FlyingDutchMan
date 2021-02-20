@@ -1,5 +1,16 @@
 ﻿(function ( flyingDutchman,underForeignFlag, $, document) {
     underForeignFlag.PresentationModel={
+        GetSearchedItems: function (searchText) {
+            let allSearchedItems = [];
+            let allPresentation = underForeignFlag.FlyingDutchManPresentationDB.spirits;
+            for (let i =0; i < allPresentation.length; i++) {
+                let item = allPresentation [i];
+                if(item.name.indexOf(searchText) != -1 || item.catgegory.indexOf(searchText) !=-1){
+                    allSearchedItems.push(JSON.stringify(item));
+                }
+            }
+                return allSearchedItems;
+        },
         GetAllBeveragesTypes: function(){
                 let types = [];
                 let spirits = underForeignFlag.FlyingDutchManPresentationDB.spirits;
