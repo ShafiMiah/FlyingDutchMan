@@ -143,9 +143,9 @@
         },
         //Dictionary variable for Urdu language
         urString : {
-            'Menu' : "مینو",
-            'Order' : "حکم کرنا",
-            'Search' : "تلاش کریں",
+            "Menu" : "مینو",
+            "Order" : "حکم کرنا",
+            "Search" : "تلاش کریں",
             "BeverageCategory":"مشروبات کا زمرہ",
             "StartPage" : "صفحہ آغاز",
             //Drinks specification
