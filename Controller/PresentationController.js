@@ -1,6 +1,13 @@
 ﻿(function ( flyingDutchman,underForeignFlag, $, document) {
     underForeignFlag.PresentationController={
 
+        ShowSearchedItems: function(){
+            let searchText = window.localStorage.getItem("ItemQueryValue");
+            let foundItems = underForeignFlag.PresentationModel.GetSearchedItems(searchText);
+            this.NodeViewLoading();
+            underForeignFlag.PresentationController.ShowBeverageItems(foundItems);
+        },
+
        ShowAllCategory: function(){
            /*Get Main toolbar height*/
 
@@ -364,7 +371,7 @@
                     underForeignFlag.PresentationController.ShowBeverageStrengthItems("SoftDrinks");
                     break;
                 case "Search":
-                    underForeignFlag.PresentationController.ShowBeverageCategoryItems();
+                    underForeignFlag.PresentationController.ShowSearchedItems();
                     break;
             }
         }
