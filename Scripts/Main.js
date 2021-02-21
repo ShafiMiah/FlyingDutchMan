@@ -261,7 +261,7 @@
     // Go to order end
     // The Search func
     $(document).on("click", ".toolbar-search-icon", function (e) {
-       let searchText=$('input[type="search"]').val()
+       let searchText=$('.search-input').val()
         if (searchText.length>0){
             window.localStorage.setItem("ItemQueryValue",searchText)
             window.localStorage.setItem("ItemQuery","Search")
@@ -273,7 +273,7 @@
 
         var code = e.which || e.keycode;
         if (code == 13) {
-            let searchText=$('input[type="search"]').val()
+            let searchText=$('.search-input').val()
             if (searchText.length>0){
                 window.localStorage.setItem("ItemQueryValue",searchText)
                 window.localStorage.setItem("ItemQuery","Search")
