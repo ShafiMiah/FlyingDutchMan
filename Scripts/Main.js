@@ -269,6 +269,19 @@
 
         }
     });
+    $(document).on("keypress", ".search-input", function (e) {
+
+        var code = e.which || e.keycode;
+        if (code == 13) {
+            let searchText=$('input[type="search"]').val()
+            if (searchText.length>0){
+                window.localStorage.setItem("ItemQueryValue",searchText)
+                window.localStorage.setItem("ItemQuery","Search")
+                underForeignFlag.Main.RedirectUrl("NodeView")
+
+            }
+        }
+    });
     // End of Search func
 
 

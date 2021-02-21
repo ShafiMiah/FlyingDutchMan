@@ -238,6 +238,28 @@ li.language-container:after{
     background-color: #ffffff;
     border: 1px solid #ccc;
 }
+.popup-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 9999;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+.popup-backdrop~.under-foreign-flag-popup{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+}
+.loading-image{
+    width: 60px;
+    margin-left: auto;
+    margin-right: auto;
+}
 /*End popup*/
 /*Quantity input*/
 .under-foreign-flag-quantity{

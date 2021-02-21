@@ -2,7 +2,10 @@
     underForeignFlag.PresentationController={
 
         ShowSearchedItems: function(){
+            /*Set the text on search box*/
+
             let searchText = window.localStorage.getItem("ItemQueryValue");
+            $('input[type="search"]').val(searchText)
             let foundItems = underForeignFlag.PresentationModel.GetSearchedItems(searchText);
             this.NodeViewLoading();
             underForeignFlag.PresentationController.ShowBeverageItems(foundItems);
@@ -10,24 +13,27 @@
 
        ShowAllCategory: function(){
            /*Get Main toolbar height*/
-
-           underForeignFlag.Main.SetMainBodyHeight();
+           this.NodeViewLoading();
+           //underForeignFlag.Main.SetMainBodyHeight();
            let beverageTypes= underForeignFlag.PresentationModel.GetAllBeveragesTypes();
            let html = "<div class='category-container'>";
             for(let i = 0;i<beverageTypes.length;i++ ){
                 html+="<div class='beverage-category'>"+beverageTypes[i]+"</div>"
             }
            html +="</div>"
-            let bodyContent = $(document).find(".presentation-body");
+           let bodyContent = $(document).find(".presentation-body");
           bodyContent.empty();
            bodyContent.append(html);
+          // underForeignFlag.PopUp.Close()
        } ,
         NodeViewLoading : function(){
             /*SHow the loading icon*/
-            let bodyContent = $(document).find(".presentation-body");
-            let loadingHtml = "<div class='view-container-overlay-loading'></div>"
-            bodyContent.empty();
-            bodyContent.append(loadingHtml);
+            let loadingText =  underForeignFlag.Main.GetTranslationText("LoadingText");
+           //let loadingImage = "<img class=\"loading-image\" src=\"../../Contents/Images/spinner.gif\">";
+            let loadingImage ="<div class='loading-content'>"
+                loadingImage =+  "<img class=\"loading-image\" src=\"../../Contents/Images/spinner.gif\">";
+            loadingImage+="<span class='loading-text'>"+loadingText+"</span></div>"
+            //underForeignFlag.PopUp.Show(loadingImage,null, {modal:true})
             underForeignFlag.Main.SetMainBodyHeight();
 
             /*End loading*/
@@ -255,6 +261,7 @@
             html+="</div>"
             bodyContent.empty();
             bodyContent.append(html);
+           // underForeignFlag.PopUp.Close()
         },
     ShowBeverageCategoryItems : function (){
 
@@ -267,11 +274,13 @@
         presentationname.text(selectedCategory);
         let allbeverages= underForeignFlag.PresentationModel.GetBeverageCategoryItems(selectedCategory);
         underForeignFlag.PresentationController.ShowBeverageItems(allbeverages);
+
     },
     ShowBeverageStrengthItems : function (strength){
         this.NodeViewLoading();
         let allbeverages= underForeignFlag.PresentationModel.GetBeverageStrengthItems(strength);
         underForeignFlag.PresentationController.ShowBeverageItems(allbeverages);
+       // underForeignFlag.PopUp.Close()
     },
         AddToOrderCart : function (item_nr,quantity){
             let orderedItem = [];
@@ -371,6 +380,7 @@
                     underForeignFlag.PresentationController.ShowBeverageStrengthItems("SoftDrinks");
                     break;
                 case "Search":
+                    /*Set the text on the */
                     underForeignFlag.PresentationController.ShowSearchedItems();
                     break;
             }

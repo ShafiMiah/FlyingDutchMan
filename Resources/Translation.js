@@ -34,6 +34,7 @@
             "HardDrinks" : "Hard drinks",
             "SoftDrinks" : "Soft drinks",
             "Categories" : "Categories",
+            "LoadingText":"Loading.."
 
         },
         //Dictionary variable for Swedish language
@@ -70,6 +71,7 @@
             "HardDrinks" : "Hårda drycker",
             "SoftDrinks" : "Läsk",
             "Categories" : "Kategorier",
+            "LoadingText":"Läser in.."
         },
         //Dictionary variable for Bengali language
         bnString : {
@@ -105,6 +107,7 @@
             "HardDrinks" : "হার্ড ড্রিঙ্কস",
             "SoftDrinks" : "কোমল পানীয়",
             "Categories" : "বিভাগসমূহ",
+            "LoadingText":"লোড হচ্ছে.."
         },
         //Dictionary variable for Romania language
         ruString : {
@@ -140,6 +143,7 @@
             "HardDrinks" : "Hard drinks",
             "SoftDrinks" : "Soft drinks",
             "Categories" : "Categories",
+            "LoadingText":"Loading.."
         },
         //Dictionary variable for Urdu language
         urString : {
@@ -175,6 +179,7 @@
             "HardDrinks" : "سخت مشروبات",
             "SoftDrinks" : "سافٹ ڈرنکس",
             "Categories" : "اقسام",
+            "LoadingText":"لوڈ ہو رہا ہے.."
         }
     };
     underForeignFlag.Cultures={

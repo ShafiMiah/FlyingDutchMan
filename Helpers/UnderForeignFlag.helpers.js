@@ -34,7 +34,10 @@
             popUp.append(popupContent);
             //Check if the pop up is a modal
             if(opts.modal){
-
+                var backdrop = $("<div class='popup-backdrop'/>");
+                container.append(backdrop);
+                container.append(popUp);
+                popUp.css("position","fixed");
             }
             else{
                //normal popup
@@ -94,7 +97,9 @@
         },
         Close:function(){
             let container = $(document).find(".popup-container");
-            container.remove();
+            if(container){
+                container.remove();
+            }
         }
     };
     underForeignFlag.Formatter={
