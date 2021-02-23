@@ -173,7 +173,7 @@ li.language-container:after{
     content: '\f078';
 }
 .items-toolbar{
-    background-color: #333;
+    background-color: #fff;
 }
 .items-toolbar.menu-toolbar{
     background-color: #000;
@@ -195,8 +195,11 @@ li.language-container:after{
     margin-top: 2px;
     font-size: 15px;
     cursor: pointer;
-    color: #fff;
+    color: #000;
     font-weight: 500;
+}
+.items-toolbar.menu-toolbar li label{
+    color: #fff;
 }
 .items-toolbar .foreign-flag-toolbar{
     padding: 5px 0 5px 0;
