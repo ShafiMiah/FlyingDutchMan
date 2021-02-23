@@ -34,7 +34,15 @@
             "HardDrinks" : "Hard drinks",
             "SoftDrinks" : "Soft drinks",
             "Categories" : "Categories",
-            "LoadingText":"Loading.."
+            "LoadingText":"Loading..",
+            //Order View
+            "ItemDetail":"Item detail",
+            "Quantity":"Quantity",
+            "Catgegory":"Category",
+            "Summary":"Summary",
+            "NumberOfItems":"Number of items",
+            "TotalPriceInclVat":"Total price incl VAT",
+            "CheckOut":"Check out",
 
         },
         //Dictionary variable for Swedish language
@@ -71,7 +79,16 @@
             "HardDrinks" : "Hårda drycker",
             "SoftDrinks" : "Läsk",
             "Categories" : "Kategorier",
-            "LoadingText":"Läser in.."
+            "LoadingText":"Läser in..",
+            //Order View
+            "ItemDetail":"Artikeldetalj",
+            "Quantity":"Kvantitet",
+            "Catgegory":"Kategori",
+            "Summary":"Sammanfattning",
+            "NumberOfItems":"Antal artiklar",
+            "TotalPriceInclVat":"Totalpris inklusive moms",
+            "CheckOut":"Kolla upp",
+
         },
         //Dictionary variable for Bengali language
         bnString : {
@@ -107,7 +124,15 @@
             "HardDrinks" : "হার্ড ড্রিঙ্কস",
             "SoftDrinks" : "কোমল পানীয়",
             "Categories" : "বিভাগসমূহ",
-            "LoadingText":"লোড হচ্ছে.."
+            "LoadingText":"লোড হচ্ছে..",
+            //Order View
+            "ItemDetail":"আইটেম বিশদ",
+            "Quantity":"পরিমাণ",
+            "Catgegory":"বিভাগ",
+            "Summary":"সার সংক্ষেপ",
+            "NumberOfItems":"আইটেমের সংখ্যা",
+            "TotalPriceInclVat":"ভ্যাট সহ মোট দাম",
+            "CheckOut":"চেক আউট",
         },
         //Dictionary variable for Romania language
         ruString : {
@@ -143,7 +168,15 @@
             "HardDrinks" : "Hard drinks",
             "SoftDrinks" : "Soft drinks",
             "Categories" : "Categories",
-            "LoadingText":"Loading.."
+            "LoadingText":"Loading..",
+            //Order View
+            "ItemDetail":"Item detail",
+            "Quantity":"Quantity",
+            "Catgegory":"Category",
+            "Summary":"Summary",
+            "NumberOfItems":"Number of items",
+            "TotalPriceInclVat":"Total price incl VAT",
+            "CheckOut":"Check out",
         },
         //Dictionary variable for Urdu language
         urString : {
@@ -179,10 +212,18 @@
             "HardDrinks" : "سخت مشروبات",
             "SoftDrinks" : "سافٹ ڈرنکس",
             "Categories" : "اقسام",
-            "LoadingText":"لوڈ ہو رہا ہے.."
+            "LoadingText":"لوڈ ہو رہا ہے..",
+            //Order View
+            "ItemDetail":"آئٹم تفصیل",
+            "Quantity":"مقدار",
+            "Catgegory":"قسم",
+            "Summary":"خلاصہ",
+            "NumberOfItems":"اشیاء کی تعداد",
+            "TotalPriceInclVat":"وی اے ٹی سمیت کل قیمت",
+            "CheckOut":"اس کو دیکھو",
         }
     };
     underForeignFlag.Cultures={
-        availableCulture:["en-GB","sv","bn","ru","ur"]
+        availableCulture:["en-GB","sv","bn"/*,"ru"*/,"ur"]
     };
 }(window.flyingDutchman = window.flyingDutchman || {}, window.underForeignFlag = window.underForeignFlag || {}, window.jQuery, document));

@@ -62,6 +62,7 @@
             let kosher = underForeignFlag.Main.GetTranslationText("Kosher");
             let addToOrder = underForeignFlag.Main.GetTranslationText("AddToOrder");
             let add = underForeignFlag.Main.GetTranslationText("Add");
+            let category = underForeignFlag.Main.GetTranslationText("Catgegory");
             let bodyContent = $(document).find(".presentation-body");
             let html = "<div class='node-container'>";
             for(let i= 0; i < allbeverages.length ; i++){
@@ -77,6 +78,16 @@
 //write specification
                 html+= "<div class='specifications'>"
                 //sp item
+                let getItemsByQuery = window.localStorage.getItem("ItemQuery");
+                if(getItemsByQuery!="Category"){
+                    if(item.catgegory){
+                        html+= "<div class='sp'>"
+                        html+="<label>"+ category+"</label>"
+                        html+="<span>"+ item.catgegory +"</span>"
+                        html+= "</div>"
+
+                    }
+                }
                 if(item.alcoholstrength){
                     let itemValue =underForeignFlag.Formatter.GetTranslatedPercent(item.alcoholstrength);
                     html+= "<div class='sp'>"

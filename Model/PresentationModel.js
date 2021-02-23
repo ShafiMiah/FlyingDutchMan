@@ -11,6 +11,17 @@
             }
                 return allSearchedItems;
         },
+        GetItemById: function (item_nr) {
+            let allSearchedItems = [];
+            let allPresentation = underForeignFlag.FlyingDutchManPresentationDB.spirits;
+            for (let i =0; i < allPresentation.length; i++) {
+                let item = allPresentation [i];
+                if(item.nr == item_nr){
+                    return item;
+                }
+            }
+            return allSearchedItems;
+        },
         GetAllBeveragesTypes: function(){
                 let types = [];
                 let spirits = underForeignFlag.FlyingDutchManPresentationDB.spirits;
