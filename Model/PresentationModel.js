@@ -11,6 +11,18 @@
             }
                 return allSearchedItems;
         },
+        GetItemsById: function (id) {
+            let allSearchedItems = [];
+            let allPresentation = underForeignFlag.FlyingDutchManPresentationDB.spirits;
+            for (let i =0; i < allPresentation.length; i++) {
+                let item = allPresentation [i];
+                if(item.nr == id){
+                    allSearchedItems.push(JSON.stringify(item));
+                    return allSearchedItems;
+                }
+            }
+            return allSearchedItems;
+        },
         GetItemById: function (item_nr) {
             let allSearchedItems = [];
             let allPresentation = underForeignFlag.FlyingDutchManPresentationDB.spirits;

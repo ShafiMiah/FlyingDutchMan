@@ -10,7 +10,15 @@
             this.NodeViewLoading();
             underForeignFlag.PresentationController.ShowBeverageItems(foundItems);
         },
+        ShowOrderItem: function(){
+            /*Set the text on search box*/
 
+            let orderItem = window.localStorage.getItem("ItemQueryValue");
+
+            let foundItems = underForeignFlag.PresentationModel.GetItemsById(orderItem);
+            this.NodeViewLoading();
+            underForeignFlag.PresentationController.ShowBeverageItems(foundItems);
+        },
        ShowAllCategory: function(){
            /*Get Main toolbar height*/
            this.NodeViewLoading();
@@ -293,37 +301,7 @@
         underForeignFlag.PresentationController.ShowBeverageItems(allbeverages);
        // underForeignFlag.PopUp.Close()
     },
-        AddToOrderCart : function (item_nr,quantity){
-            let orderedItem = [];
-            let previousOrderedItem = window.localStorage.getItem("OrderItems");
-            let found =false;
-            if(previousOrderedItem){
-                let convertedOrder = JSON.parse(previousOrderedItem);
-                for(let i= 0 ; i< convertedOrder.length ; i++){
-                    let item = JSON.parse(convertedOrder[i]);
-                    if(item.item_nr == item_nr){
-                        found = true;
-                        item.quantity = quantity;
-                        let convertedItem = JSON.stringify(item);
-                        orderedItem.push(convertedItem);
-                    }
-                    else{
-                        let convertedItem = JSON.stringify(item);
-                        orderedItem.push(convertedItem);
-                    }
-                }
-            }
-           if(found == false){
-              let item = {
-                  "item_nr" :item_nr,
-                  "quantity": quantity
-              }
-               let convertedItem = JSON.stringify(item);
-               orderedItem.push(convertedItem);
-           }
-            window.localStorage.setItem("OrderItems",JSON.stringify(orderedItem));
-            underForeignFlag.Main.LoadOrderQuantity();
-    }
+
     };
     $(document).on("click", ".beverage-category", function () {
         //Get Available languages
@@ -350,51 +328,60 @@
         let nodeView =  $(this).closest(".node-view");
         let item_nr = nodeView.data("item-nr");
         let quantity = orderContainer.find(".add-qty").val();
-        underForeignFlag.PresentationController.AddToOrderCart(item_nr,quantity);
+        if(!quantity || quantity<1){
+            orderContainer.find(".add-qty").val(1)
+            quantity=1
+        }
+        underForeignFlag.Main.AddToOrderCart(item_nr,quantity);
+        underForeignFlag.Main.LoadOrderQuantity();
     });
     $( window ).resize(function() {
         underForeignFlag.Main.SetMainBodyHeight();
     });
     $(function () {
-        let presentationView = $(document).find(".presentation-view");
-        if(presentationView.length > 0){
-            //Load category
-            let categoryMenu = $(document).find(".category-menu");
-            if(!categoryMenu.hasClass("selected")){
-                categoryMenu.addClass("selected")
+            let presentationView = $(document).find(".presentation-view");
+            if (presentationView.length > 0) {
+                //Load category
+                let categoryMenu = $(document).find(".category-menu");
+                if (!categoryMenu.hasClass("selected")) {
+                    categoryMenu.addClass("selected")
+                }
+                underForeignFlag.PresentationController.ShowAllCategory();
             }
-            underForeignFlag.PresentationController.ShowAllCategory();
-        }
-        let presentationNodeView =  $(document).find(".presentation-node-view");
-        if(presentationNodeView.length > 0){
-            let getItemsByQuery = window.localStorage.getItem("ItemQuery");
-            switch(getItemsByQuery){
-                case "Category":
-                    let categoryMenu = $(document).find(".category-menu");
-                    if(!categoryMenu.hasClass("selected")){
-                        categoryMenu.addClass("selected")
-                    }
-                    underForeignFlag.PresentationController.ShowBeverageCategoryItems();
-                     break;
-                case "HardDrinks":
-                    let hardDrinks = $(document).find(".hard-drinks-menu");
-                    if(!hardDrinks.hasClass("selected")){
-                        hardDrinks.addClass("selected")
-                    }
-                    underForeignFlag.PresentationController.ShowBeverageStrengthItems("HardDrinks");
-                    break;
-                case "SoftDrinks":
-                    let softDrinks = $(document).find(".soft-drink-menu");
-                    if(!softDrinks.hasClass("selected")){
-                        softDrinks.addClass("selected")
-                    }
-                    underForeignFlag.PresentationController.ShowBeverageStrengthItems("SoftDrinks");
-                    break;
-                case "Search":
-                    /*Set the text on the */
-                    underForeignFlag.PresentationController.ShowSearchedItems();
-                    break;
+            let presentationNodeView = $(document).find(".presentation-node-view");
+            if (presentationNodeView.length > 0) {
+                let getItemsByQuery = window.localStorage.getItem("ItemQuery");
+                switch (getItemsByQuery) {
+                    case "Category":
+                        let categoryMenu = $(document).find(".category-menu");
+                        if (!categoryMenu.hasClass("selected")) {
+                            categoryMenu.addClass("selected")
+                        }
+                        underForeignFlag.PresentationController.ShowBeverageCategoryItems();
+                        break;
+                    case "HardDrinks":
+                        let hardDrinks = $(document).find(".hard-drinks-menu");
+                        if (!hardDrinks.hasClass("selected")) {
+                            hardDrinks.addClass("selected")
+                        }
+                        underForeignFlag.PresentationController.ShowBeverageStrengthItems("HardDrinks");
+                        break;
+                    case "SoftDrinks":
+                        let softDrinks = $(document).find(".soft-drink-menu");
+                        if (!softDrinks.hasClass("selected")) {
+                            softDrinks.addClass("selected")
+                        }
+                        underForeignFlag.PresentationController.ShowBeverageStrengthItems("SoftDrinks");
+                        break;
+                    case "Search":
+                        /*Set the text on the */
+                        underForeignFlag.PresentationController.ShowSearchedItems();
+                        break;
+                    case "OrderItem":
+                        /*Set the text on the */
+                        underForeignFlag.PresentationController.ShowOrderItem();
+                        break;
+                }
             }
-        }
     });
 }(window.flyingDutchman = window.flyingDutchman || {}, window.underForeignFlag = window.underForeignFlag || {}, window.jQuery, document));

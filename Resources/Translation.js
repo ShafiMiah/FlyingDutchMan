@@ -43,6 +43,20 @@
             "NumberOfItems":"Number of items",
             "TotalPriceInclVat":"Total price incl VAT",
             "CheckOut":"Check out",
+            "ClearOrder":"Clear orders",
+            "Help":"Help",
+            "SignIn" :"Sign in",
+            "SignOut" :"Sign out",
+            "SignInMessage" : "Sign in to get access  to beverages and service information and to order beverages.",
+            "UserName" : "User name",
+            "Password":"Password",
+            "LogInErrorMessage":"Invalid username or password.",
+            "OrderSuccessHeader":"Your order has been placed successfully",
+            "OrderFailureHeader":"Your order has been failed",
+            "OrderSuccessMessage":"Thank you for your order. Your purchase order number is {0}. Once your order has been processed you will receive a notification ",
+            "OrderFailureMessage":"Sorry, we can not process your order. You do not have enough money in your account. Please try again later.",
+            "BackToStart": "Back to start page",
+
 
         },
         //Dictionary variable for Swedish language
@@ -88,6 +102,19 @@
             "NumberOfItems":"Antal artiklar",
             "TotalPriceInclVat":"Totalpris inklusive moms",
             "CheckOut":"Kolla upp",
+            "ClearOrder":"Rensa order",
+            "Help":"Hjälp",
+            "SignIn" :"Logga in",
+            "SignOut" :"Logga ut",
+            "SignInMessage" : "Logga in för att få tillgång till drycker och serviceinformation och beställa drycker.",
+            "UserName" : "Användarnamn",
+            "Password":"Lösenord",
+            "LogInErrorMessage":"Ogiltigt användarnamn eller lösenord.",
+            "OrderSuccessHeader":"Din beställning har gjorts",
+            "OrderFailureHeader":"Din beställning misslyckades",
+            "OrderSuccessMessage":"Tack för din beställning. Ditt inköpsordernummer är {0}. När din beställning har behandlats får du ett meddelande. ",
+            "OrderFailureMessage":"Vi kan tyvärr inte behandla din beställning. Du har inte tillräckligt med pengar på ditt konto. Vänligen försök igen senare.",
+            "BackToStart": "Tillbaka till startsidan",
 
         },
         //Dictionary variable for Bengali language
@@ -133,6 +160,20 @@
             "NumberOfItems":"আইটেমের সংখ্যা",
             "TotalPriceInclVat":"ভ্যাট সহ মোট দাম",
             "CheckOut":"চেক আউট",
+            "ClearOrder":"অর্ডার মুছুন",
+            "Help":"সহায়তা",
+            "SignIn" :"সাইন ইন",
+            "SignOut" :"সাইন আউট",
+            "SignInMessage" : "পানীয় এবং পরিষেবা তথ্যের অ্যাক্সেস পেতে এবং পানীয় অর্ডার করতে সাইন ইন করুন।",
+            "UserName" : "ব্যবহারকারীর নাম",
+            "Password":"পাসওয়ার্ড",
+            "LogInErrorMessage":"অবৈধ ব্যবহারকারীর নাম বা পাসওয়ার্ড।",
+            "OrderSuccessHeader":"আপনার অর্ডার সফলভাবে স্থাপন করা হয়েছে",
+            "OrderFailureHeader":"আপনার অর্ডার ব্যর্থ হয়েছে",
+            "OrderSuccessMessage":"আপনার আদেশের জন্য আপনাকে ধন্যবাদ। আপনার ক্রয়ের অর্ডার নম্বর {0} আপনার অর্ডার প্রক্রিয়া করা হয়ে গেলে আপনি একটি বিজ্ঞপ্তি পাবেন",
+            "OrderFailureMessage":"দুঃখিত, আমরা আপনার আদেশ প্রক্রিয়া করতে পারবেন না। আপনার অ্যাকাউন্টে পর্যাপ্ত অর্থ নেই। পরে আবার চেষ্টা করুন.",
+            "BackToStart": "পৃষ্ঠার শুরুতে ফিরে যান",
+
         },
         //Dictionary variable for Romania language
         ruString : {
@@ -177,6 +218,20 @@
             "NumberOfItems":"Number of items",
             "TotalPriceInclVat":"Total price incl VAT",
             "CheckOut":"Check out",
+            "ClearOrder":"Clear orders",
+            "Help":"Help",
+            "SignIn" :"Sign in",
+            "SignOut" :"Sign out",
+            "SignInMessage" : "Sign in to get access  to beverages and service information and to order beverages.",
+            "UserName" : "User name",
+            "Password":"Password",
+            "LogInErrorMessage":"Invalid username or password.",
+            "OrderSuccessHeader":"Your order has been placed successfully",
+            "OrderFailureHeader":"Your order has been failed",
+            "OrderSuccessMessage":"Thank you for your order. Your purchase order number is {0}. Once your order has been processed you will receive a notification ",
+            "OrderFailureMessage":"Sorry, we can not process your order. You do not have enough money in your account. Please try again later.",
+            "BackToStart": "Back to start page",
+
         },
         //Dictionary variable for Urdu language
         urString : {
@@ -221,6 +276,20 @@
             "NumberOfItems":"اشیاء کی تعداد",
             "TotalPriceInclVat":"وی اے ٹی سمیت کل قیمت",
             "CheckOut":"اس کو دیکھو",
+            "ClearOrder":"آرڈر ڈیلیٹ کریں",
+            "Help":"مدد",
+            "SignIn" :"سائن ان",
+            "SignOut" :"باہر جائیں",
+            "SignInMessage" : "مشروبات اور خدمات کی معلومات تک رسائی حاصل کرنے اور مشروبات کے آرڈر کیلئے سائن ان کریں۔",
+            "UserName" : "صارف کا نام",
+            "Password":"پاس ورڈ",
+            "LogInErrorMessage":"غلط صارف نام یا پاس ورڈ.",
+            "OrderSuccessHeader":"آپ کا آرڈر کامیابی کے ساتھ دیا گیا ہے",
+            "OrderFailureHeader":"آپ کا آرڈر ناکام ہوگیا ہے",
+            "OrderSuccessMessage":"آپ کے حکم کا شکریہ۔ آپ کی خریداری کا آرڈر نمبر {0}۔ ایک بار جب آپ کے آرڈر پر کارروائی ہوجائے تو آپ کو ایک اطلاع موصول ہوجائے گی",
+            "OrderFailureMessage":"معذرت ، ہم آپ کے آرڈر پر کارروائی نہیں کرسکتے ہیں۔ آپ کے اکاؤنٹ میں اتنی رقم نہیں ہے۔ براہ کرم کچھ دیر بعد کوشش کریں.",
+            "BackToStart": "صفحہ شروع کرنے پر واپس جائیں",
+
         }
     };
     underForeignFlag.Cultures={

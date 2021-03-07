@@ -3,11 +3,13 @@
    <head>
 	   <title>LogIn</title>
          <meta charset="utf-8">
-		<link href="../../Contents/Font-awesome.css" type="text/css" rel="stylesheet">
+	   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	   <link href="../../Contents/Font-awesome.css" type="text/css" rel="stylesheet">
 		<link href="../../Contents/Controls.css" type="text/css" rel="stylesheet">
 		<link href="../../Contents/Site.css" type="text/css" rel="stylesheet">
+	   <link href="../../Contents/Login.css" type="text/css" rel="stylesheet">
 	   <link href="../../Contents/Media.css" type="text/css" rel="stylesheet">
-	   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
    </head>
    <body>
    <section class ="main-layout">
@@ -32,7 +34,7 @@
 
 				   </li>
 				   <li class="container right-aligned language-container">
-					   <img class="img-icon" src="../../Contents/Flag/gb.svg">
+					   <img class="img-icon" src="../../Contents/Flag/en-GB.svg">
 				   </li>
 				   <li class="container right-aligned">
 					   <! -- order cart-->
@@ -49,7 +51,7 @@
 					   <! -- User-->
 					   <div class="item-container">
 						   <span class="icon fa fa-user content fa-2x"></span>
-						   <label class="icon-label user-label key-text " >Menu</label>
+						   <label class="icon-label user-label " >Menu</label>
 					   </div>
 					   <! -- #End: User-->
 				   </li>
@@ -84,7 +86,26 @@
 
 	   <!-- #Render your view inside main body through controller-->
 	   <main class="main-body">
-
+<div class="log-in-view">
+	<div class="login-view-back-ground">
+		<div class="log-in-container">
+			<div class="heder-logo">
+				<img class="img" src="../../Contents/Images/FlyingDutchman.png">
+			</div>
+			<div class="header key-text">SignInMessage</div>
+			<div class="user-name-container">
+				<input autofocus="" class="user-name-input key-text"   placeholder="UserName" tabindex="1" type="text" value="">
+			</div>
+			<div class="password-container">
+				<input autofocus="" class="password-input key-text"    placeholder="Password" tabindex="2" type="password">
+			</div>
+			<div class="invalid-user-name-password"></div>
+			<div class="log-in-button-container">
+				<button class="sign-in-button key-text" >SignIn</button>
+			</div>
+		</div>
+	</div>
+</div>
 	   </main>
 	   <!-- #Render your view inside main body-->
 
@@ -108,7 +129,7 @@
    <!--#End:render Model-->
 
    <!--Render Your Controller-->
-
+   <script src="../../Controller/LogInController.js"></script>
    <!--#End:render controller-->
 
    </body>

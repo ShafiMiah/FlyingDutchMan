@@ -99,6 +99,7 @@ body {
     justify-items: center;
     width: 100%;
     height: 100%;
+    cursor: pointer;
 }
 .main-toolbar .order-cart-container span.icon{
     display: inline-block;
@@ -148,6 +149,7 @@ li.language-container{
     grid-template-columns: auto auto;
     align-items: center;
     justify-items: center;
+    cursor: pointer;
 }
 li.language-container .img-icon{
     max-width: 30px !important;
@@ -255,8 +257,10 @@ li.language-container:after{
     height: 100%;
     display: grid;
     align-items: center;
-    background-color: transparent;
     border: none;
+    z-index: 999999;
+    background-color: transparent;
+    padding: 0px;
 }
 .loading-image{
     width: 60px;

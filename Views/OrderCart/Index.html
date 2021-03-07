@@ -6,7 +6,9 @@
 		<link href="../../Contents/Font-awesome.css" type="text/css" rel="stylesheet">
 		<link href="../../Contents/Controls.css" type="text/css" rel="stylesheet">
 		<link href="../../Contents/Site.css" type="text/css" rel="stylesheet">
+	   <link href="../../Contents/Order.css" type="text/css" rel="stylesheet">
 	   <link href="../../Contents/Media.css" type="text/css" rel="stylesheet">
+	   <script src="../../Scripts/CheckUserAuthorization.js"></script>
 	   <meta name="viewport" content="width=device-width, initial-scale=1.0">
    </head>
    <body>
@@ -25,14 +27,14 @@
 
 					   <! -- Search box-->
 					   <div class="quick-search-input" data-min-search="2">
-						   <input class="key-text search-input" type="search" placeholder="Search" tabindex="5" autocomplete="xyz">
+						   <input  class="key-text search-input" type="search" placeholder="Search" tabindex="5" autocomplete="xyz">
 						   <a class="toolbar-search-icon" ><span class="icon fa fa-search content fa-2x"></span></a>
 					   </div>
 					   <! -- #End: Search box-->
 
 				   </li>
 				   <li class="container right-aligned language-container">
-					   <img class="img-icon" src="../../Contents/Flag/gb.svg">
+					   <img class="img-icon" src="../../Contents/Flag/en-GB.svg">
 				   </li>
 				   <li class="container right-aligned">
 					   <! -- order cart-->
@@ -49,7 +51,7 @@
 					   <! -- User-->
 					   <div class="item-container">
 						   <span class="icon fa fa-user content fa-2x"></span>
-						   <label class="icon-label user-label key-text " >Menu</label>
+						   <label class="icon-label user-label " >Menu</label>
 					   </div>
 					   <! -- #End: User-->
 				   </li>
@@ -84,6 +86,21 @@
 
 	   <!-- #Render your view inside main body through controller-->
 	   <main class="main-body">
+		<div class="order-header">
+			<div class="order-name-container">
+				<label class="order-name key-text">Order</label>
+			</div>
+		</div>
+		   <div class="order main-body-contents">
+			   <div class="order-body">
+				   <div class="order-cart-body-container">
+						<div class="order-items-container">
+						</div>
+					   <div class="order-cost-container">
+					   </div>
+				   </div>
+			   </div>
+		   </div>
 
 	   </main>
 	   <!-- #Render your view inside main body-->
@@ -101,11 +118,14 @@
       <script src="../../Helpers/UnderForeignFlag.helpers.js"></script>
      <!--End of Common Script-->
    <!--Render Your Model-->
-
+   <script src="../../Data/FlyingDutchManPresentationDB.js"></script>
+   <script src="../../Model/PresentationModel.js"></script>
+   <script src="../../Data/FlyigDutchManUsersDB.js"></script>
+   <script src="../../Model/UserModel.js"></script>
    <!--#End:render Model-->
 
    <!--Render Your Controller-->
-
+   <script src="../../Controller/OrderCartController.js"></script>
    <!--#End:render controller-->
    </body>
 </html>

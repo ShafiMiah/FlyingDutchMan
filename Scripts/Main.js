@@ -13,6 +13,23 @@
 
 
         },
+        LoadUsername: function(){
+            let userMenuText = underForeignFlag.Main.GetTranslationText("Menu");
+            let userLabel = $(document).find(".user-label");
+            let user = window.localStorage.getItem("FlyingDutchManUser");
+            if(user){
+                //Get the user Name and put user name on the Menu
+            let userObject =    JSON.parse(user)
+            if(userObject){
+                let userName = userObject.first_name+ " " + userObject.last_name
+                userLabel.text(userName)
+            }
+            }
+            else{
+                userLabel.text(userMenuText)
+            }
+
+        },
         LoadOrderQuantity: function () {
             //Get the quantity from the local storage
             let orderedItem = window.localStorage.getItem("OrderItems");
@@ -153,6 +170,7 @@
             for(let i = 0; i < mainUrl.length-2; i++ ){
                 finalUrl += mainUrl[i] + "/";
             }
+
             switch(controllerName){
                 case "OrderCart":
                     finalUrl += "OrderCart" + "/Index.html";
@@ -177,14 +195,94 @@
 
             let language = underForeignFlag.Main.GetSelectedUi().trim();
             finalUrl = finalUrl +"?"+"lang="+language;
+
             window.location.href = finalUrl;
 
             //let  = ;
         },
+        AddToOrderCart : function (item_nr,quantity){
+            let orderedItem = [];
+            let previousOrderedItem = window.localStorage.getItem("OrderItems");
+            let found =false;
+            if(previousOrderedItem){
+                let convertedOrder = JSON.parse(previousOrderedItem);
+                for(let i= 0 ; i< convertedOrder.length ; i++){
+                    let item = JSON.parse(convertedOrder[i]);
+                    if(item.item_nr == item_nr){
+                        found = true;
+                        item.quantity = quantity;
+                        let convertedItem = JSON.stringify(item);
+                        orderedItem.push(convertedItem);
+                    }
+                    else{
+                        let convertedItem = JSON.stringify(item);
+                        orderedItem.push(convertedItem);
+                    }
+                }
+            }
+            if(found == false){
+                let item = {
+                    "item_nr" :item_nr,
+                    "quantity": quantity
+                }
+                let convertedItem = JSON.stringify(item);
+                orderedItem.push(convertedItem);
+            }
+            window.localStorage.setItem("OrderItems",JSON.stringify(orderedItem));
+
+        },
+        DeleteFromOrderCart : function (items){
+            let orderedItem = [];
+            let previousOrderedItem = window.localStorage.getItem("OrderItems");
+            let found =false;
+            if(previousOrderedItem){
+                let convertedOrder = JSON.parse(previousOrderedItem);
+                for(let i= 0 ; i< convertedOrder.length ; i++){
+                    let item = JSON.parse(convertedOrder[i]);
+
+                    if(!items.includes(item.item_nr)){
+                        let remainItem = JSON.stringify(item);
+                        orderedItem.push(remainItem);
+                    }
+
+                }
+            }
+       if(orderedItem.length > 0)
+            window.localStorage.setItem("OrderItems",JSON.stringify(orderedItem));
+       else
+           window.localStorage.removeItem("OrderItems");
+
+        },
 
 
     };
+    $(document).on("click", ".avatar-menu", function (e) {
+        //User Menu
+        let helpText = underForeignFlag.Main.GetTranslationText("Help");
+        let loginkey ="SignIn";
+        if(window.localStorage.getItem("FlyingDutchManUser")){
+            loginkey="SignOut"
+        }
+        let loginText = underForeignFlag.Main.GetTranslationText(loginkey);
+        let txt1 = "<ul class='under-foreign-flag-menu'>";
+            txt1+="<li  class='help-item'>"+helpText+"</li>"
+            txt1+="<li data-login='"+loginkey+"' class='log-in-item'>"+loginText+"</li>"
+        txt1+="</ul>"
+        let languageContainer = $(document).find(".avatar-menu");
+        underForeignFlag.PopUp.Show(txt1,languageContainer,null)
 
+    });
+    $(document).on("click", ".help-item", function (e) {
+        underForeignFlag.Main.RedirectUrl("Help");
+
+    });
+    $(document).on("click", ".log-in-item", function (e) {
+        if($(this).data("login") != "SignIn"){
+            window.localStorage.clear();
+        }
+
+        underForeignFlag.Main.RedirectUrl("LogIn");
+    });
     $(document).on("click", ".language-container", function (e) {
          //Get Available languages
         let availableCulture = underForeignFlag.Cultures.availableCulture;
@@ -233,20 +331,22 @@
     $(document).on("click", ".increase", function (e) {
         //Get quantity value
        let quantityElement = $(this).closest(".under-foreign-flag-quantity").find(".add-qty");
-       let quantity = parseInt(quantityElement.val())+1;
+       let quantity =quantityElement.val()? parseInt(quantityElement.val())+1: 1;
         if(quantity > parseInt($(quantityElement).attr("max")) ){
             quantity= $(quantityElement).attr("max");
         }
-        quantityElement.val(quantity)
+        quantityElement.val(quantity);
+        quantityElement.trigger("change");
     });
     $(document).on("click", ".decrease", function (e) {
         //Get quantity value
         let quantityElement = $(this).closest(".under-foreign-flag-quantity").find(".add-qty");
-        let quantity = parseInt(quantityElement.val())-1;
+        let quantity =quantityElement.val() ? parseInt(quantityElement.val())-1 : 1;
         if(quantity < parseInt($(quantityElement).attr("min"))){
             quantity= $(quantityElement).attr("min");
         }
         quantityElement.val(quantity)
+        quantityElement.trigger("change");
     });
     // Goto OrderCart func
     $(document).on("click", ".order-cart-container", function (e) {
@@ -291,6 +391,7 @@
         underForeignFlag.Main.SiteTranslation();
         underForeignFlag.Main.SetLanguageFlag();
         underForeignFlag.Main.ReloadUrl();
+        underForeignFlag.Main.LoadUsername()
     });
 
 }(window.flyingDutchman = window.flyingDutchman || {}, window.underForeignFlag = window.underForeignFlag || {}, window.jQuery, document));
