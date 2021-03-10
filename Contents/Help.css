@@ -1,0 +1,79 @@
+.help-view-container{
+    display: grid;
+    grid-template-columns: [start left] minmax(max-content, 1fr) [body header footer] minmax(auto, 1500px) [right hfend] minmax(max-content, 1fr) [end];
+    position: relative;
+}
+.help-view-content-body{
+    grid-row: body / span 1;
+    grid-column: body / span 1;
+    position: relative;
+    padding-top: 10px;
+    margin: 0 10px 0 10px;
+}
+.help-name{
+    text-align: center;
+   display: inline-block;
+    font-size: 22px;
+    margin: 20px 0 20px 0;
+}
+
+.node-container{
+    display: grid;
+    grid-auto-flow: row;
+    grid-auto-rows: auto;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 20px;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.node-view {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-flow: row;
+    background-color: #fff;
+    border-color: #fff;
+    border-width: 2px;
+    border-style: solid;
+    padding: 10px;
+
+}
+.inner-text{
+    font-weight: bold;
+    color: #ab0000;
+    cursor: pointer;
+}
+.inner-text:hover{
+    text-decoration: underline;
+}
+.delveloped-by h3{
+    font-size: 35px;
+    text-decoration:underline;
+    text-align: center;
+}
+.node-image{
+    position:relative;
+    border: 1px solid #ccc;
+}
+.node-image img{
+
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    /*height: unset;*/
+    width: 100%;
+    max-width: 100vw;
+    margin: 0;
+    object-position: unset;
+}
+.e-mail,.phone-number{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-column-gap: 5px;
+}
+.email-address{
+    color: #0040ff;
+    cursor: pointer;
+    text-decoration: underline;
+}

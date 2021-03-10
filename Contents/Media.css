@@ -1,0 +1,105 @@
+/*Tablet media*/
+@media all and (max-width: 1100px){
+    .order-table-item{
+        grid-template-columns: 1fr 80px 80px 20px !important;
+    }
+    .order-cart-body-container{
+        grid-template-columns: 1fr !important;
+        grid-template-rows: auto 1fr;
+    }
+    .presentation-header{
+        height: 250px;
+    }
+    .presentation-body .category-container{
+        column-count: 2;
+        -webkit-column-count: 2;
+    }
+    .presentation-name {
+        font-size: 40px;
+    }
+  .order-total-cost-items  .button-container{
+      grid-template-columns: 1fr 1fr;
+      grid-column-gap: 7px;
+  }
+}
+/*Tablet Horizontal media*/
+@media all and (max-width: 850px){
+    .presentation-name {
+        font-size: 30px;
+    }
+
+}
+/*mobile media*/
+@media all and (max-device-width: 600px) {
+    .order-table-item .specifications .sp{
+        grid-template-columns: 1fr;
+    }
+    .main-toolbar li  .icon-label{
+       display: none !important;
+    }
+    .presentation-header{
+        height: 150px !important;
+    }
+    .presentation-image{
+        height: 150px !important;
+    }
+    .presentation-name{
+        font-size: 30px;
+    }
+    .header-logo{
+        display: none;
+        overflow: hidden;
+    }
+    .presentation-body .category-container{
+        column-count: 1;
+        -webkit-column-count: 1;
+    }
+    .presentation-name {
+        font-size: 30px;
+    }
+    .main-toolbar .items-toolbar .foreign-flag-toolbar .container.center-aligned{
+        padding: 0px;
+    }
+    .items-toolbar.menu-toolbar li label{
+        font-size: 16px;
+    }
+    .order-total-cost-items  .button-container{
+        grid-template-columns: 1fr ;
+    }
+    .log-in-container{
+        padding: 20px;
+    }
+
+    .undo-redo-container{
+        display: none !important;
+        overflow: hidden;
+    }
+}
+/*mobile horizontal media*/
+@media all and (max-height: 411px){
+    .presentation-header{
+        height: 150px !important;
+    }
+    .presentation-image{
+        height: 150px !important;
+    }
+    .presentation-name {
+        font-size: 30px;
+    }
+    .log-in-container{
+        padding: 10px;
+    }
+    .log-in-container .heder-logo{
+        display: none;
+    }
+    .log-in-container .header{
+        display: none;
+    }
+    .log-in-container {
+        padding: 20px;
+        min-height: 150px;
+    }
+    .main-toolbar li .icon-label {
+        display: none !important;
+    }
+}

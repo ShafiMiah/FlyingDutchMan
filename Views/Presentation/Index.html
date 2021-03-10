@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+   <head>
+	   <title>Presentation</title>
+         <meta charset="utf-8">
+		<link href="../../Contents/Font-awesome.css" type="text/css" rel="stylesheet">
+		<link href="../../Contents/Controls.css" type="text/css" rel="stylesheet">
+		<link href="../../Contents/Site.css" type="text/css" rel="stylesheet">
+	   <link href="../../Contents/Presentation.css" type="text/css" rel="stylesheet">
+	   <link rel="stylesheet" type="text/css" media="screen and (max-device-width: 501px)" href="../../Contents/Media.css" />
+	   <link href="../../Contents/Media.css" type="text/css" rel="stylesheet">
+	   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	   <script src="../../Scripts/CheckUserAuthorization.js"></script>
+   </head>
+   <body>
+   <section class ="main-layout presentation-view">
+	   <div class="main-toolbar">
+		   <div class="header-toolbar">
+			   <ul class="foreign-flag-toolbar">
+				   <li class="Container">
+					   <! -- Logo-->
+					   <div class="header-logo">
+						   <img class="img" src="../../Contents/Images/FlyingDutchman.png">
+					   </div>
+					   <! -- #End Logo-->
+				   </li>
+				   <li class="Container search-container">
+
+					   <! -- Search box-->
+					   <div class="quick-search-input" data-min-search="2">
+						   <input class="key-text search-input" type="search" placeholder="Search" tabindex="5" autocomplete="xyz">
+						   <a class="toolbar-search-icon" ><span class="icon fa fa-search content fa-2x"></span></a>
+					   </div>
+					   <! -- #End: Search box-->
+
+				   </li>
+				   <li class="container right-aligned language-container">
+					   <img class="img-icon" src="../../Contents/Flag/en-GB.svg">
+				   </li>
+				   <li class="container right-aligned">
+					   <! -- order cart-->
+					   <div class="order-cart-container item-container">
+						   <span class="icon fa fa-shopping-cart content fa-2x" ></span>
+						   <label class="icon-label key-text" >Order</label>
+						   <div class="overlay">
+							   <span class="total-qty"></span>
+						   </div>
+					   </div>
+					   <! -- #End: order cart-->
+				   </li>
+				   <li class="container avatar-menu right-aligned">
+					   <! -- User-->
+					   <div class="item-container">
+						   <span class="icon fa fa-user content fa-2x"></span>
+						   <label class="icon-label user-label  " >Menu</label>
+					   </div>
+					   <! -- #End: User-->
+				   </li>
+			   </ul>
+
+		   </div>
+		   <div class="items-toolbar menu-toolbar">
+			   <ul class="foreign-flag-toolbar">
+				   <li class=" container center-aligned category-menu">
+					   <label class="key-text">Categories</label>
+				   </li>
+				   <li class=" container center-aligned soft-drink-menu">
+					   <label class="key-text">SoftDrinks</label>
+				   </li>
+				   <li class=" container center-aligned hard-drinks-menu">
+					   <label class="key-text">HardDrinks</label>
+				   </li>
+
+			   </ul>
+		   </div>
+		   <div class="items-toolbar">
+                  <ul class="foreign-flag-toolbar">
+                      <li class=" container start-url">
+                          <label class="key-text">StartPage</label>
+                      </li>
+
+                  </ul>
+              </div>
+	   </div>
+
+
+	   <!-- #Render your view inside main body through controller-->
+	   <main class="main-body">
+		   <div class="presentation-header">
+			   <img class="presentation-image" src="../../Contents/Images/1.jpg">
+			   <img class="presentation-image" src="../../Contents/Images/2.jpg">
+			   <img class="presentation-image" src="../../Contents/Images/3.jpg">
+			   <img class="presentation-image" src="../../Contents/Images/4.jpg">
+			   <img class="presentation-image" src="../../Contents/Images/5.jpg">
+			   <img class="presentation-image" src="../../Contents/Images/6.jpg">
+			   <img class="presentation-image" src="../../Contents/Images/7.jpg">
+			   <img class="presentation-image" src="../../Contents/Images/8.jpg">
+			   <div class="presentation-name-container">
+				   <label class="presentation-name key-text">BeverageCategory</label>
+			   </div>
+		   </div>
+			<div class="presentation main-body-contents">
+			<div class="presentation-body">
+
+			</div>
+			</div>
+	   </main>
+	   <!-- #Render your view inside main body-->
+
+
+
+	   <footer class="main-footer"></footer>
+   </section>
+   <!--Common Scripts-->
+	  <script src="../../Scripts/jquery-3.3.1.min.js"></script>
+	  <script src="../../Scripts/Main.js"></script>
+	   <script src="../../Scripts/jquery.glob.js"></script>
+	   <script src="../../Scripts/globinfo/jQuery.glob.all.js"></script>
+      <script src="../../Resources/Translation.js"></script>
+      <script src="../../Helpers/UnderForeignFlag.helpers.js"></script>
+     <!--End of Common Script-->
+   <!--Render Your Model-->
+   <script src="../../Data/FlyingDutchManPresentationDB.js"></script>
+   <script src="../../Model/PresentationModel.js"></script>
+   <!--#End:render Model-->
+
+   <!--Render Your Controller-->
+   <script src="../../Controller/PresentationController.js"></script>
+   <!--#End:render controller-->
+   </body>
+</html>
