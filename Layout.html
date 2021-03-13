@@ -1,107 +1,109 @@
 <!DOCTYPE html>
 <html>
-   <head>
-         <meta charset="utf-8">
-		<link href="Contents/Font-awesome.css" type="text/css" rel="stylesheet">
-		<link href="Contents/Controls.css" type="text/css" rel="stylesheet">
-		<link href="Contents/Site.css" type="text/css" rel="stylesheet">
+<head>
+	<title>Order</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!--Common css-->
+	<link href="Contents/Font-awesome.css" type="text/css" rel="stylesheet">
+	<link href="Contents/Controls.css" type="text/css" rel="stylesheet">
+	<link href="Contents/Site.css" type="text/css" rel="stylesheet">
+	<!--end Common css-->
+	<!--Controller css-->
+	<link href="Contents/Media.css" type="text/css" rel="stylesheet">
+	<!--end Controller css-->
+	<!--Check authorization-->
+	<!--<script src="Scripts/CheckUserAuthorization.js"></script>-->
+	<!--end Check authorization-->
+</head>
+<body>
+<section class ="main-layout">
+	<div class="main-toolbar">
+		<div class="header-toolbar">
+			<ul class="foreign-flag-toolbar">
+				<li class="Container">
+					<! -- Logo-->
+					<div class="header-logo">
+						<img class="img" src="Contents/Images/FlyingDutchman.png">
+					</div>
+					<! -- #End Logo-->
+				</li>
+				<li class="Container search-container">
 
-   </head>
-   <body>
-   <section class ="main-layout">
-	   <div class="main-toolbar">
-		   <div class="header-toolbar">
-			   <ul class="foreign-flag-toolbar">
-				   <li class="Container">
-					   <! -- Logo-->
-					   <div class="header-logo">
-						   <img class="img" src="Contents/Images/FlyingDutchman.png">
-					   </div>
-					   <! -- #End Logo-->
-				   </li>
-				   <li class="Container search-container">
+					<! -- Search box-->
+					<div class="quick-search-input" data-min-search="2">
+						<input  class="key-text search-input" type="search" placeholder="Search" tabindex="5" autocomplete="xyz">
+						<a class="toolbar-search-icon" ><span class="icon fa fa-search content fa-2x"></span></a>
+					</div>
+					<! -- #End: Search box-->
 
-					   <! -- Search box-->
-					   <div class="quick-search-input" data-min-search="2">
-						   <input class="key-text" type="search" placeholder="Search" tabindex="5" autocomplete="xyz">
-						   <a class="toolbar-search-icon" ><span class="icon fa fa-search content fa-2x"></span></a>
-					   </div>
-					   <! -- #End: Search box-->
+				</li>
+				<li class="container right-aligned language-container">
+					<img class="img-icon" src="Contents/Flag/en-GB.svg">
+				</li>
+				<li class="container right-aligned">
+					<! -- order cart-->
+					<div class="order-cart-container item-container">
+						<span class="icon fa fa-shopping-cart content fa-2x" ></span>
+						<label class="icon-label key-text" >Order</label>
+						<div class="overlay">
+							<span class="total-qty"></span>
+						</div>
+					</div>
+					<! -- #End: order cart-->
+				</li>
+				<li class="container avatar-menu right-aligned">
+					<! -- User-->
+					<div class="item-container">
+						<span class="icon fa fa-user content fa-2x"></span>
+						<label class="icon-label user-label " >Menu</label>
+					</div>
+					<! -- #End: User-->
+				</li>
+			</ul>
 
-				   </li>
-				   <li class="container right-aligned language-container">
-					   <img class="img-icon" src="Contents/Flag/gb.svg">
-				   </li>
-				   <li class="container right-aligned">
-					   <! -- order cart-->
-					   <div class="order-cart-container item-container">
-						   <span class="icon fa fa-shopping-cart content fa-2x" ></span>
-						   <label class="icon-label key-text" >Order</label>
-						   <div class="overlay">
-							   <span class="total-qty">2</span>
-						   </div>
-					   </div>
-					   <! -- #End: order cart-->
-				   </li>
-				   <li class="container avatar-menu right-aligned">
-					   <! -- User-->
-					   <div class="item-container">
-						   <span class="icon fa fa-user content fa-2x"></span>
-						   <label class="icon-label user-label key-text " >Menu</label>
-					   </div>
-					   <! -- #End: User-->
-				   </li>
-			   </ul>
+		</div>
+		<div class="items-toolbar menu-toolbar">
+			<ul class="foreign-flag-toolbar">
+				<li class=" container center-aligned category-menu middle-first">
+					<label class="key-text">Categories</label>
+				</li>
+				<li class=" container center-aligned soft-drink-menu">
+					<label class="key-text">SoftDrinks</label>
+				</li>
+				<li class=" container center-aligned hard-drinks-menu middle-last">
+					<label class="key-text">HardDrinks</label>
+				</li>
 
-		   </div>
+			</ul>
+		</div>
+		<div class="items-toolbar">
+			<ul class="foreign-flag-toolbar">
+				<li class=" container start-url">
+					<label class="key-text">StartPage</label>
+				</li>
 
-		   <div class="items-toolbar">
-			   <ul class="foreign-flag-toolbar">
-				   <li class=" container center-aligned">
-					   <label>Wine</label>
-				   </li>
-				   <li class=" container center-aligned">
-					   <label>Beer</label>
-				   </li>
-				   <li class=" container center-aligned">
-					   <label>Spirits</label>
-				   </li>
-				   <li class=" container center-aligned">
-					   <label>Cider & Mixed drinks</label>
-				   </li>
-				   <li class=" container center-aligned">
-					   <label>Non-Alcoholics</label>
-				   </li>
-				   <li class=" container center-aligned">
-					   <label> Drinks & Food</label>
-				   </li>
-			   </ul>
-		   </div>
-	   </div>
+			</ul>
+		</div>
+	</div>
+	<!-- #Render your view inside main body through controller-->
+	<main class="main-body">
 
 
+	</main>
+	<!-- #Render your view inside main body-->
 
-	   <!-- #Render your view inside main body through controller-->
-	   <main class="main-body">
+	<footer class="main-footer"></footer>
+</section>
+<!--Common Scripts-->
+<script src="Scripts/jquery-3.3.1.min.js"></script>
+<script src="Scripts/Main.js"></script>
+<script src="Scripts/jquery.glob.js"></script>
+<script src="Scripts/globinfo/jQuery.glob.all.js"></script>
+<script src="Scripts/UndoRedoManager.js"></script>
+<script src="Resources/Translation.js"></script>
+<script src="Helpers/UnderForeignFlag.helpers.js"></script>
+<!--End of Common Script-->
 
-	   </main>
-	   <!-- #Render your view inside main body-->
-
-
-
-	   <footer class="main-footer"></footer>
-   </section>
-   <!--Common Scripts-->
-	  <script src="Scripts/jquery-3.3.1.min.js"></script>
-	  <script src="Scripts/Main.js"></script>
-	  <script src="Helpers/PopUpHelper.js"></script>
-     <script src="Resources/Translation.js"></script>
-     <!--End of Common Script-->
-   <script>
-	   function myFunction() {
-		   alert('pop')
-		   return 1
-	   }
-   </script>
-   </body>
+</body>
 </html>

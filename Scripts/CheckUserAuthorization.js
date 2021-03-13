@@ -15,6 +15,11 @@
         for(let i = 0; i < mainUrl.length-2; i++ ){
             finalUrl += mainUrl[i] + "/";
         }
+        let folderNameLocation = mainUrl.length-2;
+        if(mainUrl[folderNameLocation] !="OrderCart" && mainUrl[folderNameLocation] !="Presentation" && mainUrl[folderNameLocation] !="LogIn" && mainUrl[folderNameLocation] !="Help" )
+        {
+            finalUrl += mainUrl[folderNameLocation] + "/Views/";
+        }
         finalUrl += "LogIn" + "/Index.html";
         if(restoreLanguage){
             finalUrl = finalUrl +"?"+"lang="+restoreLanguage;

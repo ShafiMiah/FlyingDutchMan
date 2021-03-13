@@ -65,7 +65,7 @@
             "DevelopedBY":"Developed by",
             "ShafiMiah" : "Shafi Miah",
             "BasitJaved":"Basit Javed",
-            "IgorCeapa" : "IgorCeapa",
+            "IgorCeapa" : "Igor Ceapa",
             "Albin":"Albin Ingvarsson",
             "Student":"(Student)",
             "MasCom":"Masters in Computer Science",
