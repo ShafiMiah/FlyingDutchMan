@@ -373,3 +373,11 @@ color: #fff;
     opacity: 0.50;
     height: 429px;
 }
+.main-footer{
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+}
+.main-footer > span{
+    padding: 10px 0 10px 0;
+}
