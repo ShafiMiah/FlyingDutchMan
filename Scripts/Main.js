@@ -404,6 +404,10 @@
         //Redirect start view
       underForeignFlag.Main.RedirectUrl("Presentation");
     });
+    $(document).on("click", ".foreign-flag-logo", function (e) {
+        //Redirect start view
+        underForeignFlag.Main.RedirectUrl("Presentation");
+    });
     $(document).on("click", ".category-menu", function (e) {
         //Redirect category view
         underForeignFlag.Main.RedirectUrl("Presentation");
