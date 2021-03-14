@@ -38,6 +38,11 @@
     padding: 10px;
 
 }
+.node-view:hover{
+    box-shadow: 1px 1px 10px -1px #ccc;
+    background-color: #fff;
+ 
+}
 .inner-text{
     font-weight: bold;
     color: #ab0000;
