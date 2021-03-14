@@ -24,7 +24,7 @@
     underForeignFlag.AccountModel={
        GetCredentialByUserId:function(userId){
            let cachedCredential = window.sessionStorage.getItem("UserAccount");
-           let allCredential = cachedCredential? JSON.parse(cachedCredential) : underForeignFlag.FlyingDutchManUsersDB.account;
+           let allCredential = cachedCredential && cachedCredential!=null? JSON.parse(cachedCredential) : underForeignFlag.FlyingDutchManUsersDB.account;
            for(let i=0;i< allCredential.length;i++){
                let item = allCredential[i];
                if(item.user_id == userId){
@@ -35,7 +35,7 @@
        } ,
         PurchaseWithCredential : function(userId, newAmount){
             let cachedCredential = window.sessionStorage.getItem("UserAccount");
-            let allCredential =  cachedCredential? JSON.parse(cachedCredential) : underForeignFlag.FlyingDutchManUsersDB.account;
+            let allCredential =  cachedCredential && cachedCredential!=null? JSON.parse(cachedCredential) : underForeignFlag.FlyingDutchManUsersDB.account;
             for(let i=0;i< allCredential.length;i++){
                 let item = allCredential[i];
                 if(item.user_id == userId){
