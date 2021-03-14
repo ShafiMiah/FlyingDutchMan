@@ -76,7 +76,7 @@
             let html = "<div class='node-container'>";
             for(let i= 0; i < allbeverages.length ; i++){
                 let item = jQuery.parseJSON( allbeverages[i]);
-                html += "<div class='node-view' draggable='true'  data-item-nr='"+item.nr+"' data-article-id='"+item.articleid+"'>";
+                html += "<div class='node-view' draggable='true'  data-item-nr='"+item.nr+"' >";
 
                 //print name
                 html+= "<div class='name'>"

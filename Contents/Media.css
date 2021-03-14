@@ -76,7 +76,7 @@
     }
 }
 /*mobile horizontal media*/
-@media all and (max-height: 411px){
+@media all and (max-height: 420px){
     .presentation-header{
         height: 150px !important;
     }
