@@ -1,5 +1,11 @@
 ﻿(function ( flyingDutchman,underForeignFlag, $, document) {
+    /********************************************************************************************************/
+    /********************************************************************************************************/
+    /***********************This controller have been implemented Albin Ingvarrson and Shafi Miah*************************/
+    /********************************************************************************************************/
+    /********************************************************************************************************/
     underForeignFlag.UsersModel={
+        //Authorize the user with user name and password
         UserAuthorization: function (userName, passWord){
             let allUsers = underForeignFlag.FlyingDutchManUsersDB.users;
             for (let i=0;i<allUsers.length;i++){
@@ -10,6 +16,7 @@
             }
             return null;
         },
+        //Get User by id
         GetUserById : function (id){
             let allUsers = underForeignFlag.FlyingDutchManUsersDB.users;
             for (let i=0;i<allUsers.length;i++){
@@ -22,6 +29,7 @@
         }
     };
     underForeignFlag.AccountModel={
+        //Get available credit of signed in user
        GetCredentialByUserId:function(userId){
            let cachedCredential = window.sessionStorage.getItem("UserAccount");
            let allCredential = cachedCredential && cachedCredential!=null? JSON.parse(cachedCredential) : underForeignFlag.FlyingDutchManUsersDB.account;
@@ -33,6 +41,7 @@
            }
            return null;
        } ,
+        //Clicking on checkout in order cart the credit will be updated.
         PurchaseWithCredential : function(userId, newAmount){
             let cachedCredential = window.sessionStorage.getItem("UserAccount");
             let allCredential =  cachedCredential && cachedCredential!=null? JSON.parse(cachedCredential) : underForeignFlag.FlyingDutchManUsersDB.account;

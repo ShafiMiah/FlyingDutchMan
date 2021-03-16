@@ -1,6 +1,11 @@
 ﻿(function ( flyingDutchman,underForeignFlag, $, document) {
+    /********************************************************************************************************/
+    /********************************************************************************************************/
+    /***********************This controller have been implemented by Shafi and Basit*************************/
+    /********************************************************************************************************/
+    /********************************************************************************************************/
     underForeignFlag.PresentationController={
-
+//Putting search text in the search box and searching will get all items. Then show on node view
         ShowSearchedItems: function(){
             /*Set the text on search box*/
 
@@ -10,6 +15,7 @@
             this.NodeViewLoading();
             underForeignFlag.PresentationController.ShowBeverageItems(foundItems);
         },
+        //clicking on item in order view will call this function
         ShowOrderItem: function(){
             /*Set the text on search box*/
 
@@ -19,6 +25,7 @@
             this.NodeViewLoading();
             underForeignFlag.PresentationController.ShowBeverageItems(foundItems);
         },
+        //Show all category types and show on presentation view
        ShowAllCategory: function(){
            /*Get Main toolbar height*/
            this.NodeViewLoading();
@@ -46,7 +53,7 @@
 
             /*End loading*/
         },
-
+//Create the drinks items view and show on node view
         ShowBeverageItems:function(allbeverages){
 
             //let name = underForeignFlag.Main.GetTranslationText("Name");
@@ -283,6 +290,7 @@
             bodyContent.append(html);
            // underForeignFlag.PopUp.Close()
         },
+        //Show all type of drinks category items
     ShowBeverageCategoryItems : function (){
 
        let selectedCategory = window.sessionStorage.getItem("ItemQueryValue");
@@ -296,6 +304,7 @@
         underForeignFlag.PresentationController.ShowBeverageItems(allbeverages);
 
     },
+        //Show soft or hard drinks
     ShowBeverageStrengthItems : function (strength){
         this.NodeViewLoading();
         let allbeverages= underForeignFlag.PresentationModel.GetBeverageStrengthItems(strength);
@@ -304,6 +313,7 @@
     },
 
     };
+    // Clicking on beverages category will show all ites related to the category
     $(document).on("click", ".beverage-category", function () {
         //Get Available languages
         window.sessionStorage.removeItem("ItemQueryValue");
@@ -323,7 +333,7 @@
         }
 
     });
-    /*Add to order*/
+    /*Add to order cart on clicking button*/
     $(document).on("click", ".add-to-order-button", function () {
         let orderContainer = $(this).closest(".add-to-order");
         let nodeView =  $(this).closest(".node-view");
@@ -336,10 +346,14 @@
         underForeignFlag.UndoRedoManager.DoFunction(underForeignFlag.Main.AddToOrderCart(item_nr,quantity))
 
     });
+    //Adjust main body height
     $( window ).resize(function() {
         underForeignFlag.Main.SetMainBodyHeight();
     });
+    //On load of presentaion or nodeview the corresponding operation will be performed and show items
     $(function () {
+
+        //Show all item category
             let presentationView = $(document).find(".presentation-view");
             if (presentationView.length > 0) {
                 //Load category
@@ -349,6 +363,8 @@
                 }
                 underForeignFlag.PresentationController.ShowAllCategory();
             }
+
+            //Show items based on the type of operation
             let presentationNodeView = $(document).find(".presentation-node-view");
             if (presentationNodeView.length > 0) {
                 let getItemsByQuery = window.sessionStorage.getItem("ItemQuery");

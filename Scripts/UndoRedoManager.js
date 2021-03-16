@@ -1,6 +1,6 @@
 ﻿(function ( flyingDutchman,underForeignFlag, $, document) {
     underForeignFlag.UndoRedoManager={
-
+//This will put function object to undo stack and clear redo stack
          DoFunction:  function (funcobj) {
              let redostack=[]
              let undostack=[]
@@ -28,6 +28,7 @@
              window.sessionStorage.removeItem("RedoStack")
 
         },
+        //This will ppo function object from undo stack and push redo stack
         UndoFunction:function() {
             let redostack=[]
             let undostack=[]
@@ -63,6 +64,7 @@
                 window.sessionStorage.removeItem("RedoStack")
 
         },
+        //This will pop function object from redo stack and push undo stack
         ReDoFunction: function() {
             let redostack=[]
             let undostack=[]
@@ -99,6 +101,7 @@
                 window.sessionStorage.removeItem("RedoStack")
 
         },
+        //Based on the type of function object the corresponding function will be called
         PerformOperation: function(operationType,functionObject){
             let functionName = functionObject.functionName;
             switch(functionName){
@@ -129,18 +132,20 @@
     $(document).on("keydown", function (e) {
 
         var code = e.which || e.keycode;
-        //ctrl+z
+        //ctrl+z undo
         if (code == 90) {
             underForeignFlag.UndoRedoManager.UndoFunction();
         }
-        //ctrl+y
+        //ctrl+y redo
         if (code == 89) {
             underForeignFlag.UndoRedoManager.ReDoFunction();
         }
     });
+    //undo the function
     $(document).on("click", ".undo-container", function () {
         underForeignFlag.UndoRedoManager.UndoFunction();
     });
+    //redo the function
     $(document).on("click", ".redo-container", function () {
         underForeignFlag.UndoRedoManager.ReDoFunction();
     });

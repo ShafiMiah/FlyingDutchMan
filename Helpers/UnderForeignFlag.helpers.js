@@ -1,4 +1,5 @@
 ﻿(function ( flyingDutchman,underForeignFlag, $, document) {
+    //This will create popup and show pop up
     underForeignFlag.PopUp={
         defaults: {
             modal: false,
@@ -26,6 +27,7 @@
 
             return container;
         },
+        //Show the pop up
         Show: function (popupContent, relativeElement, options) {
             let opts = $.extend({},  underForeignFlag.PopUp.defaults, options);
             let relativeItem= relativeElement;
@@ -95,6 +97,7 @@
             }
 
         },
+        //close pop up
         Close:function(){
             let container = $(document).find(".popup-container");
             if(container){
@@ -106,26 +109,31 @@
        percentToNumber:function(percentStr) {
         return Number(percentStr.slice(0,-1));
         },
+        //Number translation to percent
         GetTranslatedPercent : function(percentStr){
             let number = this.percentToNumber(percentStr);
             let formattedNumber = this.GetFormattedNumberToFloat(number);
             return formattedNumber+"%"
         },
+        //Translation to currency
         GetFormattedCurrency:function(amount){
             let selectedLanguage = underForeignFlag.Main.GetSelectedUi();
             var price = jQuery.localFormat(amount, "C",selectedLanguage);
             return price;
         },
+        //Translation to number format
         GetFormattedNumberToInt: function(number){
             let selectedLanguage = underForeignFlag.Main.GetSelectedUi();
             var number = jQuery.localFormat(number, "n0",selectedLanguage);
             return number;
         },
+
         GetFormattedNumberToFloat: function(number){
             let selectedLanguage = underForeignFlag.Main.GetSelectedUi();
             var number = jQuery.localFormat(number, "n2",selectedLanguage);
             return number;
         },
+        //Translate to date format
         GetFormattedDate :function(date){
             let selectedLanguage = underForeignFlag.Main.GetSelectedUi();
 

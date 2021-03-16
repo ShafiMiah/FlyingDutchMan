@@ -1,4 +1,10 @@
 ﻿(function ( flyingDutchman,underForeignFlag, $, document) {
+    /********************************************************************************************************/
+    /********************************************************************************************************/
+    /***********************This controller have been implemented Albin Ingvarrson*************************/
+    /********************************************************************************************************/
+    /********************************************************************************************************/
+    //Clicking on sign in user will have sign in validation and go through authorization.
     $(document).on("click", ".sign-in-button", function () {
         //Check validation of user Name and Password
         let userName = $(document).find(".user-name-input")
@@ -26,6 +32,7 @@
             messageContainer.text(logInErrorMessage);
         }
     });
+    //Validate User name
     $(document).find(".user-name-input").focusout(function() {
         //Check validation of user Name and Password
         let userName = $(document).find(".user-name-input")
@@ -39,6 +46,7 @@
         }
 
     });
+    //Validate password
     $(document).find(".password-input").focusout(function(){
         //Check validation of user Name and Password
         let passWord = $(document).find(".password-input")

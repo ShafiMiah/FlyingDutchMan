@@ -1,4 +1,5 @@
 ﻿(function ( flyingDutchman,underForeignFlag, $, document) {
+    //This will adjust document body height.
     $( window ).resize(function() {
         underForeignFlag.Main.SetMainBodyHeight();
         let containerWidth = $(document).find(".help-view-container");
