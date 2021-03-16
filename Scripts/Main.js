@@ -13,9 +13,26 @@
 
 
         },
+        LoadUsername: function(){
+            let userMenuText = underForeignFlag.Main.GetTranslationText("Menu");
+            let userLabel = $(document).find(".user-label");
+            let user = window.sessionStorage.getItem("FlyingDutchManUser");
+            if(user){
+                //Get the user Name and put user name on the Menu
+            let userObject =    JSON.parse(user)
+            if(userObject){
+                let userName = userObject.first_name+ " " + userObject.last_name
+                userLabel.text(userName)
+            }
+            }
+            else{
+                userLabel.text(userMenuText)
+            }
+
+        },
         LoadOrderQuantity: function () {
             //Get the quantity from the local storage
-            let orderedItem = window.localStorage.getItem("OrderItems");
+            let orderedItem = window.sessionStorage.getItem("OrderItems");
             let quantity = ""
             if(orderedItem){
                 let totalItems = 0;
@@ -72,11 +89,11 @@
             }
         },*/
         GetSelectedUi: function(){
-            let selectedLanguage = window.localStorage.getItem("SelectedLanguage");
+            let selectedLanguage = window.sessionStorage.getItem("SelectedLanguage");
             if(selectedLanguage){
                 return selectedLanguage;
             }
-            return "en-GB";
+            return "bn";
         },
         GetTranslationText:function(key){
             //Language Selected language
@@ -114,7 +131,7 @@
                     }
                     break;
                 default:
-                    translatedText = underForeignFlag.Translation.enString[key];
+                    translatedText = underForeignFlag.Translation.bnString[key];
                     if(translatedText){
                         return translatedText;
                     }
@@ -153,6 +170,11 @@
             for(let i = 0; i < mainUrl.length-2; i++ ){
                 finalUrl += mainUrl[i] + "/";
             }
+            let folderNameLocation = mainUrl.length-2;
+            if(mainUrl[folderNameLocation] !="OrderCart" && mainUrl[folderNameLocation] !="Presentation" && mainUrl[folderNameLocation] !="LogIn" && mainUrl[folderNameLocation] !="Help" )
+            {
+                finalUrl += mainUrl[folderNameLocation] + "/Views/";
+            }
             switch(controllerName){
                 case "OrderCart":
                     finalUrl += "OrderCart" + "/Index.html";
@@ -177,14 +199,183 @@
 
             let language = underForeignFlag.Main.GetSelectedUi().trim();
             finalUrl = finalUrl +"?"+"lang="+language;
+
             window.location.href = finalUrl;
 
             //let  = ;
         },
+        AddToOrderCart : function (item_nr,quantity){
+            let result={
+                itemNumber: item_nr.toString(),
+                itemQuantity: quantity,
+                functionName:"AddToOrderCart",
+                //Execute add to order cart
+                Execute:function (){
+                    let orderedItem = [];
+                    let previousOrderedItem = window.sessionStorage.getItem("OrderItems");
+                    let found =false;
+                    if(previousOrderedItem){
+                        let convertedOrder = JSON.parse(previousOrderedItem);
+                        for(let i= 0 ; i< convertedOrder.length ; i++){
+                            let item = JSON.parse(convertedOrder[i]);
+                            if(item.item_nr.toString() == this.itemNumber.toString()){
+                                found = true;
+                                item.quantity = this.itemQuantity;
+                                let convertedItem = JSON.stringify(item);
+                                orderedItem.push(convertedItem);
+                            }
+                            else{
+                                let convertedItem = JSON.stringify(item);
+                                orderedItem.push(convertedItem);
+                            }
+                        }
+                    }
+                    if(found == false){
+                        let item = {
+                            "item_nr" :this.itemNumber.toString(),
+                            "quantity": this.itemQuantity
+                        }
+                        let convertedItem = JSON.stringify(item);
+                        orderedItem.push(convertedItem);
+                    }
+                    window.sessionStorage.setItem("OrderItems",JSON.stringify(orderedItem));
+                    underForeignFlag.Main.LoadOrderQuantity();
+                },
+                //End Execute add to order cart
+                UnExecute:function(){
+                    let orderedItem = [];
+                    let previousOrderedItem = window.sessionStorage.getItem("OrderItems");
+                    let found =false;
+                    if(previousOrderedItem){
+                        let convertedOrder = JSON.parse(previousOrderedItem);
+                        for(let i= 0 ; i< convertedOrder.length ; i++){
+                            let item = JSON.parse(convertedOrder[i]);
+
+                            if(this.itemNumber.toString()!=item.item_nr.toString()){
+                                let remainItem = JSON.stringify(item);
+                                orderedItem.push(remainItem);
+                            }
+                            else{
+                                found=true;
+                            }
+
+                        }
+                    }
+                    if(found == false){
+                        let item = {
+                            "item_nr" :this.itemNumber.toString(),
+                            "quantity": this.itemQuantity
+                        }
+                        let convertedItem = JSON.stringify(item);
+                        orderedItem.push(convertedItem);
+                    }
+                    if(orderedItem.length > 0){
+                        window.sessionStorage.setItem("OrderItems",JSON.stringify(orderedItem));
+                    }
+                    else{
+                        window.sessionStorage.removeItem("OrderItems");
+                    }
+                    underForeignFlag.Main.LoadOrderQuantity();
+                },
+
+            }
+            return result;
+        },
+        DeleteFromOrderCart : function (items){
+            let result={
+
+                itemNumbers : items,
+                quantities:[],
+                functionName:"DeleteFromOrderCart",
+
+                Execute: function(){
+                    //itemNumbers.push(items)
+                    let orderedItem = [];
+                    let previousOrderedItem = window.sessionStorage.getItem("OrderItems");
+                    let found =false;
+                    if(previousOrderedItem){
+                        let convertedOrder = JSON.parse(previousOrderedItem);
+                        for(let i= 0 ; i< convertedOrder.length ; i++){
+                            let item = JSON.parse(convertedOrder[i]);
+
+                            if(!this.itemNumbers.includes(item.item_nr.toString())){
+                                let remainItem = JSON.stringify(item);
+                                orderedItem.push(remainItem);
+                            }
+                            else{
+                                this.quantities.push(item.quantity)
+                            }
+
+                        }
+                    }
+                    if(orderedItem.length > 0)
+                        window.sessionStorage.setItem("OrderItems",JSON.stringify(orderedItem));
+                    else
+                        window.sessionStorage.removeItem("OrderItems");
+                    underForeignFlag.Main.LoadOrderQuantity();
+
+                },
+                UnExecute:function(){
+                    let orderedItem = [];
+                    let previousOrderedItem = window.sessionStorage.getItem("OrderItems");
+                    if(previousOrderedItem){
+                        let convertedOrder = JSON.parse(previousOrderedItem);
+                        for(let i= 0 ; i< convertedOrder.length ; i++){
+                            let item = JSON.parse(convertedOrder[i]);
+
+                                let convertedItem = JSON.stringify(item);
+                                orderedItem.push(convertedItem);
+                        }
+                    }
+                    for(let i=0;i < this.itemNumbers.length;i++){
+                        let item = {
+                            "item_nr" :this.itemNumbers[i].toString(),
+                            "quantity": this.quantities[i]
+                        }
+                        let convertedItem = JSON.stringify(item);
+                        orderedItem.push(convertedItem);
+                    }
+                    window.sessionStorage.setItem("OrderItems",JSON.stringify(orderedItem));
+                    underForeignFlag.Main.LoadOrderQuantity();
+                }
+            }
+            return result;
+
+
+        },
 
 
     };
+    $(document).on("click", ".avatar-menu", function (e) {
+        //User Menu
+        let helpText = underForeignFlag.Main.GetTranslationText("Help");
+        let loginkey ="SignIn";
+        if(window.sessionStorage.getItem("FlyingDutchManUser")){
+            loginkey="SignOut"
+        }
+        let loginText = underForeignFlag.Main.GetTranslationText(loginkey);
+        let txt1 = "<ul class='under-foreign-flag-menu'>";
+            txt1+="<li  class='help-item'>"+helpText+"</li>"
+            txt1+="<li data-login='"+loginkey+"' class='log-in-item'>"+loginText+"</li>"
+        txt1+="</ul>"
+        let languageContainer = $(document).find(".avatar-menu");
+        underForeignFlag.PopUp.Show(txt1,languageContainer,null)
 
+    });
+    $(document).on("click", ".help-item", function (e) {
+        underForeignFlag.Main.RedirectUrl("Help");
+
+    });
+    $(document).on("click", ".log-in-item", function (e) {
+        if($(this).data("login") != "SignIn"){
+            //Save account data base
+            let account = window.sessionStorage.getItem("UserAccount");
+            window.sessionStorage.clear();
+            window.sessionStorage.setItem("UserAccount",account);
+        }
+
+        underForeignFlag.Main.RedirectUrl("LogIn");
+    });
     $(document).on("click", ".language-container", function (e) {
          //Get Available languages
         let availableCulture = underForeignFlag.Cultures.availableCulture;
@@ -205,7 +396,7 @@
     $(document).on("click", ".language-item", function (e) {
         //Get Available languages
        let selectedCulture = $(this).data("culture");
-        window.localStorage.setItem("SelectedLanguage",selectedCulture);
+        window.sessionStorage.setItem("SelectedLanguage",selectedCulture);
         underForeignFlag.Main.ReloadUrl();
 
     });
@@ -213,40 +404,46 @@
         //Redirect start view
       underForeignFlag.Main.RedirectUrl("Presentation");
     });
+    $(document).on("click", ".foreign-flag-logo", function (e) {
+        //Redirect start view
+        underForeignFlag.Main.RedirectUrl("Presentation");
+    });
     $(document).on("click", ".category-menu", function (e) {
         //Redirect category view
         underForeignFlag.Main.RedirectUrl("Presentation");
     });
     $(document).on("click", ".soft-drink-menu", function (e) {
         //Redirect node view
-        window.localStorage.removeItem("ItemQueryValue")
-        window.localStorage.setItem("ItemQuery","SoftDrinks")
+        window.sessionStorage.removeItem("ItemQueryValue")
+        window.sessionStorage.setItem("ItemQuery","SoftDrinks")
         underForeignFlag.Main.RedirectUrl("NodeView");
     });
     $(document).on("click", ".hard-drinks-menu", function (e) {
         //Get Available hard drinks
-        window.localStorage.removeItem("ItemQueryValue")
-        window.localStorage.setItem("ItemQuery","HardDrinks")
+        window.sessionStorage.removeItem("ItemQueryValue")
+        window.sessionStorage.setItem("ItemQuery","HardDrinks")
         underForeignFlag.Main.RedirectUrl("NodeView");
     });
     /*Input increment*/
     $(document).on("click", ".increase", function (e) {
         //Get quantity value
        let quantityElement = $(this).closest(".under-foreign-flag-quantity").find(".add-qty");
-       let quantity = parseInt(quantityElement.val())+1;
+       let quantity =quantityElement.val()? parseInt(quantityElement.val())+1: 1;
         if(quantity > parseInt($(quantityElement).attr("max")) ){
             quantity= $(quantityElement).attr("max");
         }
-        quantityElement.val(quantity)
+        quantityElement.val(quantity);
+        quantityElement.trigger("change");
     });
     $(document).on("click", ".decrease", function (e) {
         //Get quantity value
         let quantityElement = $(this).closest(".under-foreign-flag-quantity").find(".add-qty");
-        let quantity = parseInt(quantityElement.val())-1;
+        let quantity =quantityElement.val() ? parseInt(quantityElement.val())-1 : 1;
         if(quantity < parseInt($(quantityElement).attr("min"))){
             quantity= $(quantityElement).attr("min");
         }
         quantityElement.val(quantity)
+        quantityElement.trigger("change");
     });
     // Goto OrderCart func
     $(document).on("click", ".order-cart-container", function (e) {
@@ -263,8 +460,8 @@
     $(document).on("click", ".toolbar-search-icon", function (e) {
        let searchText=$('.search-input').val()
         if (searchText.length>0){
-            window.localStorage.setItem("ItemQueryValue",searchText)
-            window.localStorage.setItem("ItemQuery","Search")
+            window.sessionStorage.setItem("ItemQueryValue",searchText)
+            window.sessionStorage.setItem("ItemQuery","Search")
             underForeignFlag.Main.RedirectUrl("NodeView")
 
         }
@@ -275,8 +472,8 @@
         if (code == 13) {
             let searchText=$('.search-input').val()
             if (searchText.length>0){
-                window.localStorage.setItem("ItemQueryValue",searchText)
-                window.localStorage.setItem("ItemQuery","Search")
+                window.sessionStorage.setItem("ItemQueryValue",searchText)
+                window.sessionStorage.setItem("ItemQuery","Search")
                 underForeignFlag.Main.RedirectUrl("NodeView")
 
             }
@@ -291,6 +488,7 @@
         underForeignFlag.Main.SiteTranslation();
         underForeignFlag.Main.SetLanguageFlag();
         underForeignFlag.Main.ReloadUrl();
+        underForeignFlag.Main.LoadUsername()
     });
 
 }(window.flyingDutchman = window.flyingDutchman || {}, window.underForeignFlag = window.underForeignFlag || {}, window.jQuery, document));

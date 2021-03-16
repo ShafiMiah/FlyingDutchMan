@@ -3,23 +3,29 @@
    <head>
 	   <title>Presentation</title>
          <meta charset="utf-8">
-		<link href="../../Contents/Font-awesome.css" type="text/css" rel="stylesheet">
+	   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	   <!--Common css-->
+	   <link href="../../Contents/Font-awesome.css" type="text/css" rel="stylesheet">
 		<link href="../../Contents/Controls.css" type="text/css" rel="stylesheet">
 		<link href="../../Contents/Site.css" type="text/css" rel="stylesheet">
+	   <!--end Common css-->
+	   <!--Controller css-->
 	   <link href="../../Contents/Presentation.css" type="text/css" rel="stylesheet">
-	   <link rel="stylesheet" type="text/css" media="screen and (max-device-width: 501px)" href="../../Contents/Media.css" />
 	   <link href="../../Contents/Media.css" type="text/css" rel="stylesheet">
-	   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	   <!--end Controller css-->
+	   <!--Check authorization-->
+	   <script src="../../Scripts/CheckUserAuthorization.js"></script>
+	   <!--end Check authorization-->
    </head>
    <body>
    <section class ="main-layout presentation-node-view">
 	   <div class="main-toolbar">
 		   <div class="header-toolbar">
 			   <ul class="foreign-flag-toolbar">
-				   <li class="Container">
+				   <li class="Container foreign-flag-logo">
 					   <! -- Logo-->
 					   <div class="header-logo">
-						   <img class="img" src="../../Contents/Images/FlyingDutchman.png">
+						   <img class="img" src="../../Contents/Images/uflag-logo.png">
 					   </div>
 					   <! -- #End Logo-->
 				   </li>
@@ -36,7 +42,7 @@
 				   <li class="container right-aligned language-container">
 					   <img class="img-icon" src="../../Contents/Flag/en-GB.svg">
 				   </li>
-				   <li class="container right-aligned">
+				   <li class="container right-aligned order-cart-li">
 					   <! -- order cart-->
 					   <div class="order-cart-container item-container">
 						   <span class="icon fa fa-shopping-cart content fa-2x" ></span>
@@ -51,7 +57,7 @@
 					   <! -- User-->
 					   <div class="item-container">
 						   <span class="icon fa fa-user content fa-2x"></span>
-						   <label class="icon-label user-label key-text " >Menu</label>
+						   <label class="icon-label user-label  " >Menu</label>
 					   </div>
 					   <! -- #End: User-->
 				   </li>
@@ -60,16 +66,23 @@
 		   </div>
 		   <div class="items-toolbar menu-toolbar">
 			   <ul class="foreign-flag-toolbar">
-				   <li class=" container center-aligned category-menu">
+				   <li class=" container center-aligned category-menu middle-first">
 					   <label class="key-text">Categories</label>
 				   </li>
 				   <li class=" container center-aligned soft-drink-menu">
 					   <label class="key-text">SoftDrinks</label>
 				   </li>
-				   <li class=" container center-aligned hard-drinks-menu">
+				   <li class=" container center-aligned hard-drinks-menu middle-last">
 					   <label class="key-text">HardDrinks</label>
 				   </li>
-
+				   <li class=" container right-aligned undo-redo-container">
+					   <div class="undo-container">
+						   <span class="custom-icon"><==</span>
+					   </div>
+					   <div class="redo-container">
+						   <span class="custom-icon">==></span>
+					   </div>
+				   </li>
 			   </ul>
 		   </div>
 		   <div class="items-toolbar">
@@ -108,12 +121,13 @@
 
 
 
-	   <footer class="main-footer"></footer>
+	   <footer class="main-footer"><span>© 2021 Under Foreign Flag</span></footer>
    </section>
    <!--Common Scripts-->
 	  <script src="../../Scripts/jquery-3.3.1.min.js"></script>
 	  <script src="../../Scripts/Main.js"></script>
 	   <script src="../../Scripts/jquery.glob.js"></script>
+    <script src="../../Scripts/UndoRedoManager.js"></script>
 	   <script src="../../Scripts/globinfo/jQuery.glob.all.js"></script>
       <script src="../../Resources/Translation.js"></script>
       <script src="../../Helpers/UnderForeignFlag.helpers.js"></script>

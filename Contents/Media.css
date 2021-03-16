@@ -17,6 +17,10 @@
     .presentation-name {
         font-size: 40px;
     }
+  .order-total-cost-items  .button-container{
+      grid-template-columns: 1fr 1fr;
+      grid-column-gap: 7px;
+  }
 }
 /*Tablet Horizontal media*/
 @media all and (max-width: 850px){
@@ -59,9 +63,20 @@
     .items-toolbar.menu-toolbar li label{
         font-size: 16px;
     }
+    .order-total-cost-items  .button-container{
+        grid-template-columns: 1fr ;
+    }
+    .log-in-container{
+        padding: 20px;
+    }
+
+    .undo-redo-container{
+        display: none !important;
+        overflow: hidden;
+    }
 }
 /*mobile horizontal media*/
-@media all and (max-height: 411px){
+@media all and (max-height: 420px){
     .presentation-header{
         height: 150px !important;
     }
@@ -70,5 +85,21 @@
     }
     .presentation-name {
         font-size: 30px;
+    }
+    .log-in-container{
+        padding: 10px;
+    }
+    .log-in-container .heder-logo{
+        display: none;
+    }
+    .log-in-container .header{
+        display: none;
+    }
+    .log-in-container {
+        padding: 20px;
+        min-height: 150px;
+    }
+    .main-toolbar li .icon-label {
+        display: none !important;
     }
 }

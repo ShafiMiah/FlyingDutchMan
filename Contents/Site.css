@@ -99,6 +99,7 @@ body {
     justify-items: center;
     width: 100%;
     height: 100%;
+    cursor: pointer;
 }
 .main-toolbar .order-cart-container span.icon{
     display: inline-block;
@@ -148,6 +149,7 @@ li.language-container{
     grid-template-columns: auto auto;
     align-items: center;
     justify-items: center;
+    cursor: pointer;
 }
 li.language-container .img-icon{
     max-width: 30px !important;
@@ -209,6 +211,31 @@ li.language-container:after{
 }
 .main-toolbar .items-toolbar .foreign-flag-toolbar .container.center-aligned{
     padding: 0 10px 0 10px;
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+}
+.main-toolbar .items-toolbar .foreign-flag-toolbar .container.center-aligned.middle-first{
+    margin-left: auto;
+}
+.main-toolbar .items-toolbar .foreign-flag-toolbar .container.center-aligned.middle-last{
+    margin-right: auto;
+}
+.main-toolbar .items-toolbar .foreign-flag-toolbar .container.right-aligned{
+   margin-left: 0px !important;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-column-gap: 10px;
+    margin-right: 20px;
+}
+.main-toolbar .items-toolbar .foreign-flag-toolbar .container.right-aligned .custom-icon{
+color: #fff;
+}
+.undo-redo-container> div{
+    border: solid 2px #fff;
+    padding: 0 5px 0 5px;
+    border-radius: 8px;
+    cursor: pointer;
 }
 .main-toolbar .items-toolbar .foreign-flag-toolbar .container.selected{
     border-color: #0099cc;
@@ -255,8 +282,10 @@ li.language-container:after{
     height: 100%;
     display: grid;
     align-items: center;
-    background-color: transparent;
     border: none;
+    z-index: 999999;
+    background-color: transparent;
+    padding: 0px;
 }
 .loading-image{
     width: 60px;
@@ -343,4 +372,13 @@ li.language-container:after{
     background-color: #fff;
     opacity: 0.50;
     height: 429px;
+}
+.main-footer{
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+    margin-top: auto;
+}
+.main-footer > span{
+    padding: 10px 0 10px 0;
 }

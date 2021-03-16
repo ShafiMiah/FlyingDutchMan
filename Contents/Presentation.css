@@ -126,9 +126,15 @@
     border-width: 2px;
     border-style: solid;
     padding: 10px;
-    max-width: 360px;
+
 
 }
+.node-view:hover{
+    box-shadow: 1px 1px 10px -1px #ccc;
+    background-color: #fff;
+
+}
+
 .price-information{
    margin-top: auto;
 }
@@ -188,4 +194,5 @@
 .add-to-order-button{
     padding: 5px 5px 5px 5px;
     font-size: 18px;
+    max-width: 260px;
 }

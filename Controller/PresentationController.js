@@ -4,13 +4,21 @@
         ShowSearchedItems: function(){
             /*Set the text on search box*/
 
-            let searchText = window.localStorage.getItem("ItemQueryValue");
+            let searchText = window.sessionStorage.getItem("ItemQueryValue");
             $('input[type="search"]').val(searchText)
             let foundItems = underForeignFlag.PresentationModel.GetSearchedItems(searchText);
             this.NodeViewLoading();
             underForeignFlag.PresentationController.ShowBeverageItems(foundItems);
         },
+        ShowOrderItem: function(){
+            /*Set the text on search box*/
 
+            let orderItem = window.sessionStorage.getItem("ItemQueryValue");
+
+            let foundItems = underForeignFlag.PresentationModel.GetItemsById(orderItem);
+            this.NodeViewLoading();
+            underForeignFlag.PresentationController.ShowBeverageItems(foundItems);
+        },
        ShowAllCategory: function(){
            /*Get Main toolbar height*/
            this.NodeViewLoading();
@@ -38,6 +46,7 @@
 
             /*End loading*/
         },
+
         ShowBeverageItems:function(allbeverages){
 
             //let name = underForeignFlag.Main.GetTranslationText("Name");
@@ -67,7 +76,7 @@
             let html = "<div class='node-container'>";
             for(let i= 0; i < allbeverages.length ; i++){
                 let item = jQuery.parseJSON( allbeverages[i]);
-                html += "<div class='node-view' data-item-nr='"+item.nr+"' data-article-id='"+item.articleid+"'>";
+                html += "<div class='node-view' draggable='true'  data-item-nr='"+item.nr+"' >";
 
                 //print name
                 html+= "<div class='name'>"
@@ -78,7 +87,7 @@
 //write specification
                 html+= "<div class='specifications'>"
                 //sp item
-                let getItemsByQuery = window.localStorage.getItem("ItemQuery");
+                let getItemsByQuery = window.sessionStorage.getItem("ItemQuery");
                 if(getItemsByQuery!="Category"){
                     if(item.catgegory){
                         html+= "<div class='sp'>"
@@ -276,9 +285,9 @@
         },
     ShowBeverageCategoryItems : function (){
 
-       let selectedCategory = window.localStorage.getItem("ItemQueryValue");
+       let selectedCategory = window.sessionStorage.getItem("ItemQueryValue");
        //now remove the storage
-       // window.localStorage.removeItem("SelectedCategory");
+       // window.sessionStorage.removeItem("SelectedCategory");
        //Rename the presentation name
         this.NodeViewLoading();
         let presentationname = $(document).find(".presentation-name")
@@ -293,45 +302,15 @@
         underForeignFlag.PresentationController.ShowBeverageItems(allbeverages);
        // underForeignFlag.PopUp.Close()
     },
-        AddToOrderCart : function (item_nr,quantity){
-            let orderedItem = [];
-            let previousOrderedItem = window.localStorage.getItem("OrderItems");
-            let found =false;
-            if(previousOrderedItem){
-                let convertedOrder = JSON.parse(previousOrderedItem);
-                for(let i= 0 ; i< convertedOrder.length ; i++){
-                    let item = JSON.parse(convertedOrder[i]);
-                    if(item.item_nr == item_nr){
-                        found = true;
-                        item.quantity = quantity;
-                        let convertedItem = JSON.stringify(item);
-                        orderedItem.push(convertedItem);
-                    }
-                    else{
-                        let convertedItem = JSON.stringify(item);
-                        orderedItem.push(convertedItem);
-                    }
-                }
-            }
-           if(found == false){
-              let item = {
-                  "item_nr" :item_nr,
-                  "quantity": quantity
-              }
-               let convertedItem = JSON.stringify(item);
-               orderedItem.push(convertedItem);
-           }
-            window.localStorage.setItem("OrderItems",JSON.stringify(orderedItem));
-            underForeignFlag.Main.LoadOrderQuantity();
-    }
+
     };
     $(document).on("click", ".beverage-category", function () {
         //Get Available languages
-        window.localStorage.removeItem("ItemQueryValue");
+        window.sessionStorage.removeItem("ItemQueryValue");
         let selectedCategory = $(this).text();
         if(selectedCategory){
-            window.localStorage.setItem("ItemQueryValue",selectedCategory)
-            window.localStorage.setItem("ItemQuery","Category")
+            window.sessionStorage.setItem("ItemQueryValue",selectedCategory)
+            window.sessionStorage.setItem("ItemQuery","Category")
             let url = window.location.href;
             let splittedUrl = url.split("?")
             let mainUrl = splittedUrl[0].split("/");
@@ -350,51 +329,92 @@
         let nodeView =  $(this).closest(".node-view");
         let item_nr = nodeView.data("item-nr");
         let quantity = orderContainer.find(".add-qty").val();
-        underForeignFlag.PresentationController.AddToOrderCart(item_nr,quantity);
+        if(!quantity || quantity<1){
+            orderContainer.find(".add-qty").val(1)
+            quantity=1
+        }
+        underForeignFlag.UndoRedoManager.DoFunction(underForeignFlag.Main.AddToOrderCart(item_nr,quantity))
+
     });
     $( window ).resize(function() {
         underForeignFlag.Main.SetMainBodyHeight();
     });
     $(function () {
-        let presentationView = $(document).find(".presentation-view");
-        if(presentationView.length > 0){
-            //Load category
-            let categoryMenu = $(document).find(".category-menu");
-            if(!categoryMenu.hasClass("selected")){
-                categoryMenu.addClass("selected")
+            let presentationView = $(document).find(".presentation-view");
+            if (presentationView.length > 0) {
+                //Load category
+                let categoryMenu = $(document).find(".category-menu");
+                if (!categoryMenu.hasClass("selected")) {
+                    categoryMenu.addClass("selected")
+                }
+                underForeignFlag.PresentationController.ShowAllCategory();
             }
-            underForeignFlag.PresentationController.ShowAllCategory();
-        }
-        let presentationNodeView =  $(document).find(".presentation-node-view");
-        if(presentationNodeView.length > 0){
-            let getItemsByQuery = window.localStorage.getItem("ItemQuery");
-            switch(getItemsByQuery){
-                case "Category":
-                    let categoryMenu = $(document).find(".category-menu");
-                    if(!categoryMenu.hasClass("selected")){
-                        categoryMenu.addClass("selected")
-                    }
-                    underForeignFlag.PresentationController.ShowBeverageCategoryItems();
-                     break;
-                case "HardDrinks":
-                    let hardDrinks = $(document).find(".hard-drinks-menu");
-                    if(!hardDrinks.hasClass("selected")){
-                        hardDrinks.addClass("selected")
-                    }
-                    underForeignFlag.PresentationController.ShowBeverageStrengthItems("HardDrinks");
-                    break;
-                case "SoftDrinks":
-                    let softDrinks = $(document).find(".soft-drink-menu");
-                    if(!softDrinks.hasClass("selected")){
-                        softDrinks.addClass("selected")
-                    }
-                    underForeignFlag.PresentationController.ShowBeverageStrengthItems("SoftDrinks");
-                    break;
-                case "Search":
-                    /*Set the text on the */
-                    underForeignFlag.PresentationController.ShowSearchedItems();
-                    break;
+            let presentationNodeView = $(document).find(".presentation-node-view");
+            if (presentationNodeView.length > 0) {
+                let getItemsByQuery = window.sessionStorage.getItem("ItemQuery");
+                switch (getItemsByQuery) {
+                    case "Category":
+                        let categoryMenu = $(document).find(".category-menu");
+                        if (!categoryMenu.hasClass("selected")) {
+                            categoryMenu.addClass("selected")
+                        }
+                        underForeignFlag.PresentationController.ShowBeverageCategoryItems();
+                        break;
+                    case "HardDrinks":
+                        let hardDrinks = $(document).find(".hard-drinks-menu");
+                        if (!hardDrinks.hasClass("selected")) {
+                            hardDrinks.addClass("selected")
+                        }
+                        underForeignFlag.PresentationController.ShowBeverageStrengthItems("HardDrinks");
+                        break;
+                    case "SoftDrinks":
+                        let softDrinks = $(document).find(".soft-drink-menu");
+                        if (!softDrinks.hasClass("selected")) {
+                            softDrinks.addClass("selected")
+                        }
+                        underForeignFlag.PresentationController.ShowBeverageStrengthItems("SoftDrinks");
+                        break;
+                    case "Search":
+                        /*Set the text on the */
+                        underForeignFlag.PresentationController.ShowSearchedItems();
+                        break;
+                    case "OrderItem":
+                        /*Set the text on the */
+                        underForeignFlag.PresentationController.ShowOrderItem();
+                        break;
+                }
             }
+
+            //Drag and drop implementation
+        let orderCart = $(document).find(".order-cart-li")
+        if(orderCart.length > 0){
+            $(document).on("dragstart",".node-view",function( event ){
+                let itemNUmber = $(this).data("item-nr");
+                //Make more easy to save on session
+                window.sessionStorage.removeItem("DragDropItemKey")
+                window.sessionStorage.setItem("DragDropItemKey",itemNUmber)
+              // this.event.dataTransfer.setData("item-nr",itemNUmber.toString())
+            });
+           orderCart.on( "drop", function( event ) {
+               event.preventDefault();
+                    let presentationNumber=  window.sessionStorage.getItem("DragDropItemKey");
+
+                    let presentationItem =  $('.node-view[data-item-nr=' + presentationNumber + ']')
+                   if(presentationItem.length > 0){
+                       let quantity = presentationItem.find(".add-qty").val();
+                       if(!quantity || quantity<1){
+                           presentationItem.find(".add-qty").val(1)
+                           quantity=1
+                       }
+                       underForeignFlag.UndoRedoManager.DoFunction(underForeignFlag.Main.AddToOrderCart(presentationNumber.toString(),quantity))
+                   }
+               window.sessionStorage.removeItem("DragDropItemKey")
+
+           });
+
+            orderCart.on( "dragover", function( event ) {
+                event.preventDefault();
+            });
         }
     });
 }(window.flyingDutchman = window.flyingDutchman || {}, window.underForeignFlag = window.underForeignFlag || {}, window.jQuery, document));

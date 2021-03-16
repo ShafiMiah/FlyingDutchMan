@@ -3,23 +3,30 @@
    <head>
 	   <title>Presentation</title>
          <meta charset="utf-8">
-		<link href="../../Contents/Font-awesome.css" type="text/css" rel="stylesheet">
+	   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	   <!--Common css-->
+	   <link href="../../Contents/Font-awesome.css" type="text/css" rel="stylesheet">
 		<link href="../../Contents/Controls.css" type="text/css" rel="stylesheet">
 		<link href="../../Contents/Site.css" type="text/css" rel="stylesheet">
+	   <!--end Common css-->
+	   <!--Controller css-->
 	   <link href="../../Contents/Presentation.css" type="text/css" rel="stylesheet">
-	   <link rel="stylesheet" type="text/css" media="screen and (max-device-width: 501px)" href="../../Contents/Media.css" />
 	   <link href="../../Contents/Media.css" type="text/css" rel="stylesheet">
-	   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	   <!--end Controller css-->
+	   <!--Check authorization-->
+	   <script src="../../Scripts/CheckUserAuthorization.js"></script>
+	   <!--end Check authorization-->
    </head>
    <body>
    <section class ="main-layout presentation-view">
 	   <div class="main-toolbar">
 		   <div class="header-toolbar">
 			   <ul class="foreign-flag-toolbar">
-				   <li class="Container">
+				   <li class="Container foreign-flag-logo">
 					   <! -- Logo-->
 					   <div class="header-logo">
-						   <img class="img" src="../../Contents/Images/FlyingDutchman.png">
+						   <img class="img" src="../../Contents/Images/uflag-logo.png">
 					   </div>
 					   <! -- #End Logo-->
 				   </li>
@@ -51,7 +58,7 @@
 					   <! -- User-->
 					   <div class="item-container">
 						   <span class="icon fa fa-user content fa-2x"></span>
-						   <label class="icon-label user-label key-text " >Menu</label>
+						   <label class="icon-label user-label  " >Menu</label>
 					   </div>
 					   <! -- #End: User-->
 				   </li>
@@ -108,7 +115,7 @@
 
 
 
-	   <footer class="main-footer"></footer>
+	   <footer class="main-footer"><span>© 2021 Under Foreign Flag</span></footer>
    </section>
    <!--Common Scripts-->
 	  <script src="../../Scripts/jquery-3.3.1.min.js"></script>

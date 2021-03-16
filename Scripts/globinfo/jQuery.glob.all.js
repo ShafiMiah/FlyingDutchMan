@@ -1767,7 +1767,7 @@
     culture = cultures["sv"] = $.extend(true, {}, en, {
         name: "sv",
         englishName: "Swedish",
-        nativeName: "svenska",
+        nativeName: "Svenska",
         language: "sv",
         numberFormat: {
             ',': " ",
