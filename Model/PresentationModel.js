@@ -1,5 +1,11 @@
 ﻿(function ( flyingDutchman,underForeignFlag, $, document) {
+    /********************************************************************************************************/
+    /********************************************************************************************************/
+    /***********************This controller have been implemented Basit Javed and Shafi Miah*************************/
+    /********************************************************************************************************/
+    /********************************************************************************************************/
     underForeignFlag.PresentationModel={
+        //Get searcher item by search key
         GetSearchedItems: function (searchText) {
             let allSearchedItems = [];
             let allPresentation = underForeignFlag.FlyingDutchManPresentationDB.spirits;
@@ -11,6 +17,7 @@
             }
                 return allSearchedItems;
         },
+        //Get items as json obkect by id
         GetItemsById: function (id) {
             let allSearchedItems = [];
             let allPresentation = underForeignFlag.FlyingDutchManPresentationDB.spirits;
@@ -23,6 +30,7 @@
             }
             return allSearchedItems;
         },
+        //Get item by id with original object
         GetItemById: function (item_nr) {
             let allSearchedItems = [];
             let allPresentation = underForeignFlag.FlyingDutchManPresentationDB.spirits;
@@ -34,6 +42,7 @@
             }
             return allSearchedItems;
         },
+        //Get all type of category
         GetAllBeveragesTypes: function(){
                 let types = [];
                 let spirits = underForeignFlag.FlyingDutchManPresentationDB.spirits;
@@ -48,6 +57,7 @@
                 return types;
 
         },
+        //Get all items related to a category
         GetBeverageCategoryItems:function (categoryName){
             let allItems = [];
             let spirits = underForeignFlag.FlyingDutchManPresentationDB.spirits;
@@ -59,6 +69,7 @@
             }
             return allItems;
         },
+        //Split beverage items by its strength
         GetBeverageStrengthItems:function (strength){
             let allItems = [];
             let spirits = underForeignFlag.FlyingDutchManPresentationDB.spirits;

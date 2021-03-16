@@ -1,5 +1,6 @@
 ﻿(function ( flyingDutchman,underForeignFlag, $, document) {
     underForeignFlag.Main = {
+        //On overflow set the body main height
         SetMainBodyHeight: function(){
             let mainToolbar = $(document).find(".main-toolbar");
             let mainfooter = $(document).find(".main-footer");
@@ -13,6 +14,7 @@
 
 
         },
+        //Load username in the sign in toolbar form signed in user
         LoadUsername: function(){
             let userMenuText = underForeignFlag.Main.GetTranslationText("Menu");
             let userLabel = $(document).find(".user-label");
@@ -30,6 +32,7 @@
             }
 
         },
+        //Load the total ordered item quantity in the ordercart toolbar
         LoadOrderQuantity: function () {
             //Get the quantity from the local storage
             let orderedItem = window.sessionStorage.getItem("OrderItems");
@@ -50,6 +53,7 @@
                 quantityElement.find(".total-qty").text(quantity)
             }
         },
+        //Translate the whole site
         SiteTranslation:function(){
             //Get the text from resources file
             let items = $(document).find(".key-text");
@@ -64,6 +68,7 @@
                }
             }
         },
+        //On reload of url if language selection is different then load otherwise stay.
         ReloadUrl : function(){
             let url = window.location.href.trim();
             let language = underForeignFlag.Main.GetSelectedUi().trim();
@@ -88,6 +93,7 @@
                 window.location.href = finalUrl;
             }
         },*/
+        //Get selected laguage culture
         GetSelectedUi: function(){
             let selectedLanguage = window.sessionStorage.getItem("SelectedLanguage");
             if(selectedLanguage){
@@ -95,6 +101,7 @@
             }
             return "bn";
         },
+        //Get the corresponding translation of a key with association to culture
         GetTranslationText:function(key){
             //Language Selected language
             let selectedLanguage = underForeignFlag.Main.GetSelectedUi();
@@ -140,6 +147,7 @@
 
             return key;
         },
+        //Get the flag image url from selected culture
         SetLanguageFlag : function(){
             let language = $(document).find(".language-container");
             let selectedLanguage = underForeignFlag.Main.GetSelectedUi();
@@ -160,6 +168,7 @@
               language.find(".img-icon").attr("src",finalFlagUrl)
             }
         },
+        //Redirect to to corresponding url based on the controller name
         RedirectUrl: function(controllerName)
         {
             // RedirectUrl
@@ -204,6 +213,7 @@
 
             //let  = ;
         },
+        //This will add item to the order cart.
         AddToOrderCart : function (item_nr,quantity){
             let result={
                 itemNumber: item_nr.toString(),
@@ -281,6 +291,7 @@
             }
             return result;
         },
+        //This will delete items from the order cart.
         DeleteFromOrderCart : function (items){
             let result={
 
@@ -346,6 +357,7 @@
 
 
     };
+    //on clicking user menu will pop up
     $(document).on("click", ".avatar-menu", function (e) {
         //User Menu
         let helpText = underForeignFlag.Main.GetTranslationText("Help");
@@ -362,10 +374,12 @@
         underForeignFlag.PopUp.Show(txt1,languageContainer,null)
 
     });
+    //Go to help view
     $(document).on("click", ".help-item", function (e) {
         underForeignFlag.Main.RedirectUrl("Help");
 
     });
+    //go to login view
     $(document).on("click", ".log-in-item", function (e) {
         if($(this).data("login") != "SignIn"){
             //Save account data base
@@ -376,6 +390,7 @@
 
         underForeignFlag.Main.RedirectUrl("LogIn");
     });
+    //Showing the availabe laguage in the toolbar
     $(document).on("click", ".language-container", function (e) {
          //Get Available languages
         let availableCulture = underForeignFlag.Cultures.availableCulture;
@@ -393,6 +408,7 @@
         underForeignFlag.PopUp.Show(txt1,languageContainer,null)
 
     });
+    //Select the language
     $(document).on("click", ".language-item", function (e) {
         //Get Available languages
        let selectedCulture = $(this).data("culture");
@@ -400,24 +416,29 @@
         underForeignFlag.Main.ReloadUrl();
 
     });
+    //Go to start view
     $(document).on("click", ".start-url", function (e) {
         //Redirect start view
       underForeignFlag.Main.RedirectUrl("Presentation");
     });
+    //go to start view
     $(document).on("click", ".foreign-flag-logo", function (e) {
         //Redirect start view
         underForeignFlag.Main.RedirectUrl("Presentation");
     });
+    //clicking element will show all type of drink category
     $(document).on("click", ".category-menu", function (e) {
         //Redirect category view
         underForeignFlag.Main.RedirectUrl("Presentation");
     });
+    //Show all soft drink where percentage is less than 10%
     $(document).on("click", ".soft-drink-menu", function (e) {
         //Redirect node view
         window.sessionStorage.removeItem("ItemQueryValue")
         window.sessionStorage.setItem("ItemQuery","SoftDrinks")
         underForeignFlag.Main.RedirectUrl("NodeView");
     });
+    //Show all hard drinks.
     $(document).on("click", ".hard-drinks-menu", function (e) {
         //Get Available hard drinks
         window.sessionStorage.removeItem("ItemQueryValue")
@@ -435,6 +456,7 @@
         quantityElement.val(quantity);
         quantityElement.trigger("change");
     });
+    //input decrement
     $(document).on("click", ".decrease", function (e) {
         //Get quantity value
         let quantityElement = $(this).closest(".under-foreign-flag-quantity").find(".add-qty");
@@ -466,6 +488,7 @@
 
         }
     });
+    //Search a item
     $(document).on("keypress", ".search-input", function (e) {
 
         var code = e.which || e.keycode;

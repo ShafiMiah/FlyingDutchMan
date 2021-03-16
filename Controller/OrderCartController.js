@@ -1,5 +1,6 @@
 ﻿(function ( flyingDutchman,underForeignFlag, $, document) {
     underForeignFlag.OrderController={
+        //Show all ordered item, create html and push inside order cart
         ShowAllOrderItems:function() {
             underForeignFlag.Main.SetMainBodyHeight();
             /*These needs to be translated*/
@@ -111,7 +112,7 @@
             }
     }
     };
-
+    //Clicking checkout will check user balance and make the order.
     $(document).on("click", ".check-out", function () {
         /*Get total quantity and total price*/
         let orderedItem = window.sessionStorage.getItem("OrderItems");
@@ -157,7 +158,7 @@
             iconClass+="order-icon success";
             orderMessageHeader+=underForeignFlag.Main.GetTranslationText("OrderSuccessHeader");
             let msg = underForeignFlag.Main.GetTranslationText("OrderSuccessMessage");
-            orderMessage +=  msg.replace("{0}", "<span class='order-code'>SHMI1293</span>");
+            orderMessage +=  msg.replace("{0}", "<span class='order-code'>UFLAG1293</span>");
              let body = $(document).find(".main-body");
             body.addClass("hidden");
             /*Clear the order cart and save order to dataBase*/
@@ -205,18 +206,24 @@
 
         underForeignFlag.PopUp.Show(orderMessageHtml,null, {modal:true})
     });
+
+    //Clicking on this element user will be redirected to the corresponding item view
+
     $(document).on("click", ".details-container.order-item", function () {
         let item = $(this).closest(".order-table-item").data("item-nr");
         window.sessionStorage.setItem("ItemQueryValue",item)
         window.sessionStorage.setItem("ItemQuery","OrderItem")
         underForeignFlag.Main.RedirectUrl("NodeView")
     });
+    //This will close the order message pop up
     $(document).on("click", ".close-icon", function () {
         underForeignFlag.PopUp.Close();
     });
+    //Function will redirect to start page
     $(document).on("click", ".back-to-start", function () {
         underForeignFlag.Main.RedirectUrl("Presentation");
     });
+    //This will delete items from the order cart
     $(document).on("click", ".delete-order", function (event) {
         event.preventDefault();
         let orderItems =[]
@@ -225,6 +232,7 @@
         underForeignFlag.UndoRedoManager.DoFunction(underForeignFlag.Main.DeleteFromOrderCart(orderItems));
         window.location.reload();
     });
+    //This will delete all items from the order cart
     $(document).on("click", ".clear-order", function () {
         let orderItems =[]
         let previousOrderedItem = window.sessionStorage.getItem("OrderItems");
@@ -238,10 +246,11 @@
         underForeignFlag.UndoRedoManager.DoFunction(underForeignFlag.Main.DeleteFromOrderCart(orderItems));
         window.location.reload();
     });
-
+//Adjust the height of the window.
     $( window ).resize(function() {
         underForeignFlag.Main.SetMainBodyHeight();
     });
+    //Here the order cart will be loaded on document ready.
     $(function () {
             underForeignFlag.OrderController.ShowAllOrderItems();
         /*Here we shall call add to order cart functions*/
