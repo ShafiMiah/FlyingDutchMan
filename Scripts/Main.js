@@ -1,4 +1,9 @@
 ﻿(function ( flyingDutchman,underForeignFlag, $, document) {
+    /********************************************************************************************************/
+    /********************************************************************************************************/
+    /***********************This controller have been implemented Basit Javed, Shafi Miah, Igor Ceapa*************************/
+    /********************************************************************************************************/
+    /********************************************************************************************************/
     underForeignFlag.Main = {
         //On overflow set the body main height
         SetMainBodyHeight: function(){
@@ -14,7 +19,7 @@
 
 
         },
-        //Load username in the sign in toolbar form signed in user
+        //Load username in the sign in toolbar from signed in user information
         LoadUsername: function(){
             let userMenuText = underForeignFlag.Main.GetTranslationText("Menu");
             let userLabel = $(document).find(".user-label");
@@ -32,7 +37,7 @@
             }
 
         },
-        //Load the total ordered item quantity in the ordercart toolbar
+        //Load the total ordered item quantity in the ordercart toolbar. All order item saved in session
         LoadOrderQuantity: function () {
             //Get the quantity from the local storage
             let orderedItem = window.sessionStorage.getItem("OrderItems");
@@ -53,7 +58,7 @@
                 quantityElement.find(".total-qty").text(quantity)
             }
         },
-        //Translate the whole site
+        //Translate the current view. Check a element have class key-text and convert the text of that html element and write back.
         SiteTranslation:function(){
             //Get the text from resources file
             let items = $(document).find(".key-text");
@@ -68,7 +73,7 @@
                }
             }
         },
-        //On reload of url if language selection is different then load otherwise stay.
+        //On reload of url if language selection is different then reload the current view otherwise stay.
         ReloadUrl : function(){
             let url = window.location.href.trim();
             let language = underForeignFlag.Main.GetSelectedUi().trim();
@@ -78,21 +83,7 @@
                 window.location.href = finalUrl;
             }
         },
-       /* LoadStartUrl : function(){
-            let url = window.location.href.trim();
-            let language = underForeignFlag.Main.GetSelectedUi().trim();
-            let urlSplit = url.split('?')
-            let mainSplittedUrl = urlSplit[0].split("/");
-            let finalUrl = "";
-            for(let i=0 ;i <mainSplittedUrl.length-2;i++){
-                finalUrl+=mainSplittedUrl[i]+"/";
-            }
-            finalUrl+="Presentation/Index.html";
-            finalUrl = finalUrl +"?"+"lang="+language;
-            if(url!= finalUrl){
-                window.location.href = finalUrl;
-            }
-        },*/
+
         //Get selected laguage culture
         GetSelectedUi: function(){
             let selectedLanguage = window.sessionStorage.getItem("SelectedLanguage");
@@ -147,7 +138,7 @@
 
             return key;
         },
-        //Get the flag image url from selected culture
+        //Get the flag image url from selected culture and set the image flag to the toolbar
         SetLanguageFlag : function(){
             let language = $(document).find(".language-container");
             let selectedLanguage = underForeignFlag.Main.GetSelectedUi();
@@ -168,7 +159,7 @@
               language.find(".img-icon").attr("src",finalFlagUrl)
             }
         },
-        //Redirect to to corresponding url based on the controller name
+        //Redirect to to corresponding url or view based on the controller name
         RedirectUrl: function(controllerName)
         {
             // RedirectUrl
@@ -252,6 +243,7 @@
                     underForeignFlag.Main.LoadOrderQuantity();
                 },
                 //End Execute add to order cart
+                //this will unexecute add to order cart
                 UnExecute:function(){
                     let orderedItem = [];
                     let previousOrderedItem = window.sessionStorage.getItem("OrderItems");
@@ -298,7 +290,7 @@
                 itemNumbers : items,
                 quantities:[],
                 functionName:"DeleteFromOrderCart",
-
+//execute delete a list of item from order cart
                 Execute: function(){
                     //itemNumbers.push(items)
                     let orderedItem = [];
@@ -326,6 +318,7 @@
                     underForeignFlag.Main.LoadOrderQuantity();
 
                 },
+                //unexecute delete a list of item from order cart
                 UnExecute:function(){
                     let orderedItem = [];
                     let previousOrderedItem = window.sessionStorage.getItem("OrderItems");
@@ -357,7 +350,7 @@
 
 
     };
-    //on clicking user menu will pop up
+    //on clicking user menu will pop up which will show help view and login/logout item
     $(document).on("click", ".avatar-menu", function (e) {
         //User Menu
         let helpText = underForeignFlag.Main.GetTranslationText("Help");
@@ -390,7 +383,7 @@
 
         underForeignFlag.Main.RedirectUrl("LogIn");
     });
-    //Showing the availabe laguage in the toolbar
+    //Showing the availabe laguage in the toolbar in a dropdown list.
     $(document).on("click", ".language-container", function (e) {
          //Get Available languages
         let availableCulture = underForeignFlag.Cultures.availableCulture;
@@ -408,7 +401,7 @@
         underForeignFlag.PopUp.Show(txt1,languageContainer,null)
 
     });
-    //Select the language
+    //Select the language by clicking a available language item
     $(document).on("click", ".language-item", function (e) {
         //Get Available languages
        let selectedCulture = $(this).data("culture");
@@ -416,17 +409,17 @@
         underForeignFlag.Main.ReloadUrl();
 
     });
-    //Go to start view
+    //Go to start view(Drinks category view) clicking start link
     $(document).on("click", ".start-url", function (e) {
         //Redirect start view
       underForeignFlag.Main.RedirectUrl("Presentation");
     });
-    //go to start view
+    //Go to start view(Drinks category view) by clicking the logo
     $(document).on("click", ".foreign-flag-logo", function (e) {
         //Redirect start view
         underForeignFlag.Main.RedirectUrl("Presentation");
     });
-    //clicking element will show all type of drink category
+    //clicking toolbar element will show all type of drink category view same as start
     $(document).on("click", ".category-menu", function (e) {
         //Redirect category view
         underForeignFlag.Main.RedirectUrl("Presentation");
@@ -438,14 +431,14 @@
         window.sessionStorage.setItem("ItemQuery","SoftDrinks")
         underForeignFlag.Main.RedirectUrl("NodeView");
     });
-    //Show all hard drinks.
+    //Show all hard drinks where percentage is greater than 10%.
     $(document).on("click", ".hard-drinks-menu", function (e) {
         //Get Available hard drinks
         window.sessionStorage.removeItem("ItemQueryValue")
         window.sessionStorage.setItem("ItemQuery","HardDrinks")
         underForeignFlag.Main.RedirectUrl("NodeView");
     });
-    /*Input increment*/
+    /*Input increment number. Order quantity increment*/
     $(document).on("click", ".increase", function (e) {
         //Get quantity value
        let quantityElement = $(this).closest(".under-foreign-flag-quantity").find(".add-qty");
@@ -456,7 +449,7 @@
         quantityElement.val(quantity);
         quantityElement.trigger("change");
     });
-    //input decrement
+    //input decrement number. Order quantity decrement
     $(document).on("click", ".decrease", function (e) {
         //Get quantity value
         let quantityElement = $(this).closest(".under-foreign-flag-quantity").find(".add-qty");
@@ -467,7 +460,7 @@
         quantityElement.val(quantity)
         quantityElement.trigger("change");
     });
-    // Goto OrderCart func
+    // Goto OrderCart view
     $(document).on("click", ".order-cart-container", function (e) {
         // onclick event for actions
         // class click -> calls the function
@@ -478,7 +471,7 @@
     });
 
     // Go to order end
-    // The Search func
+    // The Search func. Clicking on icon will show the searched item
     $(document).on("click", ".toolbar-search-icon", function (e) {
        let searchText=$('.search-input').val()
         if (searchText.length>0){
@@ -488,7 +481,7 @@
 
         }
     });
-    //Search a item
+    //Search a item. hitting enter on searchbox will show order items.
     $(document).on("keypress", ".search-input", function (e) {
 
         var code = e.which || e.keycode;
@@ -504,7 +497,7 @@
     });
     // End of Search func
 
-
+//On document ready load quantity toolbar, translate view, set language flag in toolbar, load user name in the toolbar, if selected language is different reload current view.
 
     $(function () {
         underForeignFlag.Main.LoadOrderQuantity();

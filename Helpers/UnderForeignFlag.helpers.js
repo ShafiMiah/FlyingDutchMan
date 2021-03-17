@@ -1,5 +1,10 @@
 ﻿(function ( flyingDutchman,underForeignFlag, $, document) {
-    //This will create popup and show pop up
+    /********************************************************************************************************/
+    /********************************************************************************************************/
+    /***********************This controller have been implemented  Shafi Miah*************************/
+    /********************************************************************************************************/
+    /********************************************************************************************************/
+    //This will create popup , show pop up and close pop up
     underForeignFlag.PopUp={
         defaults: {
             modal: false,
@@ -105,6 +110,7 @@
             }
         }
     };
+    //This section is responsible for using jquery extension which will translate date number format and currency to corresponding culture format
     underForeignFlag.Formatter={
        percentToNumber:function(percentStr) {
         return Number(percentStr.slice(0,-1));

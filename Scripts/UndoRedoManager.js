@@ -1,4 +1,9 @@
 ﻿(function ( flyingDutchman,underForeignFlag, $, document) {
+    /********************************************************************************************************/
+    /********************************************************************************************************/
+    /***********************This controller have been implemented  Shafi Miah*************************/
+    /********************************************************************************************************/
+    /********************************************************************************************************/
     underForeignFlag.UndoRedoManager={
 //This will put function object to undo stack and clear redo stack
          DoFunction:  function (funcobj) {
@@ -129,6 +134,7 @@
             window.location.reload();
         }
     };
+    //Undo or redo on pressing ctrl+ z and ctrl + y
     $(document).on("keydown", function (e) {
 
         var code = e.which || e.keycode;

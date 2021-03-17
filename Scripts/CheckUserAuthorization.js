@@ -1,4 +1,10 @@
 ﻿(function ( flyingDutchman,underForeignFlag, $, document) {
+    /********************************************************************************/
+    /********************************************************************************/
+    /*******************************This controller have been implemented Albin Ingvarrson*************************************************/
+    /********************************************************************************/
+    /********************************************************************************/
+    //Check if the user is authorized or not. If user is authorized then go to corresponding view otherwise go to log in view
     let user = window.sessionStorage.getItem("FlyingDutchManUser");
     if(!user){
         //Redirect to User View
