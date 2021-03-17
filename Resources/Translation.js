@@ -379,6 +379,7 @@
 
         }
     };
+    //List of all available culture
     underForeignFlag.Cultures={
         availableCulture:["bn","en-GB","sv","ru","ur"]
     };
