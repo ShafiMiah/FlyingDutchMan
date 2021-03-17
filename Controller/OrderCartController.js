@@ -1,4 +1,9 @@
 ﻿(function ( flyingDutchman,underForeignFlag, $, document) {
+    /********************************************************************************************************/
+    /********************************************************************************************************/
+    /***********************This controller have been implemented Igor Ceapa*************************/
+    /********************************************************************************************************/
+    /********************************************************************************************************/
     underForeignFlag.OrderController={
         //Show all ordered item, create html and push inside order cart
         ShowAllOrderItems:function() {
@@ -207,7 +212,7 @@
         underForeignFlag.PopUp.Show(orderMessageHtml,null, {modal:true})
     });
 
-    //Clicking on this element user will be redirected to the corresponding item view
+    //Clicking on this order item user will be redirected to the corresponding item presentation view
 
     $(document).on("click", ".details-container.order-item", function () {
         let item = $(this).closest(".order-table-item").data("item-nr");
@@ -219,11 +224,11 @@
     $(document).on("click", ".close-icon", function () {
         underForeignFlag.PopUp.Close();
     });
-    //Function will redirect to start page
+    //Function will redirect to start page. All drinks category page
     $(document).on("click", ".back-to-start", function () {
         underForeignFlag.Main.RedirectUrl("Presentation");
     });
-    //This will delete items from the order cart
+    //This will delete 1 items from the order cart
     $(document).on("click", ".delete-order", function (event) {
         event.preventDefault();
         let orderItems =[]
@@ -246,7 +251,7 @@
         underForeignFlag.UndoRedoManager.DoFunction(underForeignFlag.Main.DeleteFromOrderCart(orderItems));
         window.location.reload();
     });
-//Adjust the height of the window.
+//Adjust the height of the main body on resizing the window.
     $( window ).resize(function() {
         underForeignFlag.Main.SetMainBodyHeight();
     });
